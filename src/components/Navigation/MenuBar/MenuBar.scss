@@ -1,0 +1,14 @@
+.menu-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  background-color: #000FFF;
+  color: white;
+
+  .title {
+    display: block;
+    margin: auto 0;
+    font-size: 24px;
+  }
+}

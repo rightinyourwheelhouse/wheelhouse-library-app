@@ -1,0 +1,7 @@
+// Material shadows
+$material-shadow-near: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$material-shadow-mid: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$material-shadow-far: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+// Tailored transition for these shadows, be careful not to override existing transitions
+$material-shadow-transition: all 0.3s cubic-bezier(.25,.8,.25,1);

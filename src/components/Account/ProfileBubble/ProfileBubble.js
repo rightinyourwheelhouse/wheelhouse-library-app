@@ -1,9 +1,9 @@
 import React from 'react';
 import hashCode, { getColorFromHashCode } from '../../../utils/hash';
-import './ProfileButton.scss';
+import './ProfileBubble.scss';
 
-export default ({ account }) => {
-  const initials = `${account.firstName[0]}${account.lastName[0]}`;
+export default ({ account, big }) => {
+  const initials = `${account.username[0]}`;
   const profileHash = hashCode(JSON.stringify(account));
   const color = getColorFromHashCode(profileHash);
 
@@ -12,7 +12,7 @@ export default ({ account }) => {
   };
 
   return (
-    <span style={style} className="profile-bubble">
+    <span style={style} className={`profile-bubble ${big ? 'big' : ''}`}>
       {initials}
     </span>
   );

@@ -1,18 +1,17 @@
 import React from 'react';
-import ProfileButton from '../../Account/ProfileButton/ProfileButton';
+import ProfileBubble from '../../Account/ProfileBubble/ProfileBubble';
 import './MenuBar.scss';
 
 export default ({ text }) => {
   const account = {
     id: 0,
-    firstName: 'Rafaël',
-    lastName: 'Mindreau',
+    username: 'Rafaël Mindreau',
   };
 
   return (
     <nav className="menu-bar">
       <h1 className="title">{text}</h1>
-      <ProfileButton account={account} />
+      <ProfileBubble account={account} />
     </nav>
   );
 };

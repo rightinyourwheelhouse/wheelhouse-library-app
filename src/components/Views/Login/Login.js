@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import qs from 'query-string';
-import authorize from '../../../services/authorize';
 
 export default ({ location }) => {
   // We extract the code we get from Slack if available

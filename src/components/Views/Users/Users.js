@@ -1,8 +1,10 @@
 import React from 'react';
 import ProfileListItem from '../../Account/ProfileListItem/ProfileListItem';
+import * as actions from '../../../redux/actions';
 import './Users.scss';
 
 export default () => {
+  actions.fetchAllUsers();
   const users = [{
     username: 'Roel',
   }, {

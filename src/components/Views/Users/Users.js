@@ -7,13 +7,24 @@ import * as userActions from '../../../redux/actions/users';
 import './Users.scss';
 
 class UserView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleChangeUser = this.handleChangeUser.bind(this);
+  }
+
   componentDidMount() {
     this.props.userActions.fetchAllUsers();
   }
 
+  handleChangeUser(user) {
+    this.props.userActions.setActiveUser(user);
+    this.props.history.push('/overview');
+  }
+
   render() {
     const users = this.props.userReducer.users.map(user => (
-      <ProfileListItem key={user.id} account={user} />
+      <ProfileListItem Action={this.handleChangeUser} key={user.id} account={user} />
     ));
 
     return (

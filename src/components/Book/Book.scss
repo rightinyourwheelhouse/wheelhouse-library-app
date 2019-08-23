@@ -1,56 +1,108 @@
 @import '../../constants/shadows.scss';
 
-.book {
+$margin-size: 2.5px;
+
+.book-row-container {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  margin: 5px;
+  left: 0;
+  transition: all 0.3s ease-in-out;
 
-  background-color: white;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: $material-shadow-near;
-
-  cursor: pointer;
-
-  img {
-    display: block;
-    max-width: 100px;
-    max-height: 100px;
-
-    border-radius: 5px;
+  &.expanded {
+    left: -195px;
   }
 
-  .info {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    margin-left: 5px;
+  .actions-container {
+    position: absolute;
+    right: calc(-185px - #{$margin-size * 2});
+    height: 100%;
 
-    h2.book-title {
-      display: block;
-      font-size: 24px;
-      font-weight: 700;
-    }
+    .action-button {
+      width: 90px;
+      position: relative;
+      top: 0;
+      margin-right: 5px;
+      height: calc(100% - #{$margin-size * 2} - 6px);
+      margin: $margin-size;
 
-    .rent-status {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
+      &.rent {
+        background-color: #68df7e;
+        box-shadow: 0 6px #4eac60;
 
-      color: #818181;
-
-      &.rented {
-        color: #e4a312;
-
-        &.overdue {
-          color: #d1342a;
+        &:active {
+          top: 4px;
+          box-shadow: 0 2px #4eac60;
         }
       }
 
-      &.available {
-        color: #55ab7a;
+      &.info {
+        background-color: #31aaee;
+        box-shadow: 0 6px #2980b1;
+
+        &:active {
+          top: 4px;
+          box-shadow: 0 2px #2980b1;
+        }
+      }
+    }
+  }
+
+  .book {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - (#{$margin-size} * 2));
+    padding: 10px;
+    margin: $margin-size calc(#{$margin-size} * 2);
+    left: 0;
+
+    background-color: white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: $material-shadow-near;
+
+    cursor: pointer;
+
+    img {
+      display: block;
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 5px;
+
+      border-radius: 5px;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: calc(100% - 100px);
+      margin-left: 5px;
+
+      h2.book-title {
+        display: block;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .rent-status {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        color: #818181;
+
+        &.rented {
+          color: #e4a312;
+
+          &.overdue {
+            color: #d1342a;
+          }
+        }
+
+        &.available {
+          color: #55ab7a;
+        }
       }
     }
   }

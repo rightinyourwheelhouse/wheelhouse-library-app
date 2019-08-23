@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
 import safeDivide from '../../utils/safeDivide';
@@ -9,6 +9,8 @@ export default ({ bookData }) => {
   let statusText = 'Available!';
   let statusClass = 'available';
   let progressBar;
+
+  const [expanded, setExpansion] = useState(false);
 
   if (bookData.rented) {
     // If book was rented, we need to determine how far we're into the renting period
@@ -28,14 +30,20 @@ export default ({ bookData }) => {
   }
 
   return (
-    <div className="book">
-      <img src={bookData.coverURL} alt="Book cover" />
-      <div className="info">
-        <h2 className="book-title">{bookData.title}</h2>
-        <div className={`rent-status ${statusClass}`}>
-          <h3>{statusText}</h3>
-          {progressBar}
+    <div className={`book-row-container ${expanded ? 'expanded' : ''}`}>
+      <div role="button" onClick={() => setExpansion(!expanded)} className="book">
+        <img src={bookData.coverimg} alt="Book cover" />
+        <div className="info">
+          <h2 className="book-title">{bookData.title}</h2>
+          <div className={`rent-status ${statusClass}`}>
+            <h3>{statusText}</h3>
+            {progressBar}
+          </div>
         </div>
+      </div>
+      <div className="actions-container">
+        <button type="button" className="action-button rent">Rent</button>
+        <button type="button" className="action-button info">Info</button>
       </div>
     </div>
   );

@@ -9,11 +9,12 @@ export default ({ account, big }) => {
 
   const style = {
     backgroundColor: color,
+    backgroundImage: `url(${account.avatar})`,
   };
 
   return (
     <span style={style} className={`profile-bubble ${big ? 'big' : ''}`}>
-      {initials}
+      {account.avatar ? null : initials}
     </span>
   );
 };

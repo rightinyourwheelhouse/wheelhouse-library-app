@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as bookActions from '../../../redux/actions/books';
+import Book from '../../Book/Book';
 
 class Overview extends Component {
   componentDidMount() {
@@ -7,18 +10,28 @@ class Overview extends Component {
       this.props.history.push('/users');
     }
 
-
+    this.props.bookActions.fetchAllBooks();
   }
 
   render() {
+    const books = this.props.bookReducer.books.map(book => (
+      <Book key={book.id} bookData={book} />
+    ));
+
     return (
-      <h2>Overview Page yo</h2>
+      <>
+        { books }
+      </>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  bookActions: bindActionCreators(bookActions, dispatch),
+});
 
 const mapStateToProps = state => ({
   ...state,
 });
 
-export default connect(mapStateToProps)(Overview);
+export default connect(mapStateToProps, mapDispatchToProps)(Overview);

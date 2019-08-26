@@ -20,3 +20,23 @@ export function fetchAllBooks() {
       });
   };
 }
+
+export function rentBook(bookId, userId) {
+  return (dispatch) => {
+    fetch(`${baseURL}${namespace}/books/${bookId}/rent`, {
+      method: 'POST',
+      headers: {
+        'account-id': userId,
+      },
+    }).then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error('Could not fetch books properly');
+    }, (error) => {
+      throw error;
+    }).catch((error) => {
+      dispatch(fetchAllBooksFailed(error));
+    });
+  };
+}

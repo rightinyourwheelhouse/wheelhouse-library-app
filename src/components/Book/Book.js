@@ -5,7 +5,7 @@ import safeDivide from '../../utils/safeDivide';
 import clamp from '../../utils/clamp';
 import './Book.scss';
 
-export default ({ bookData }) => {
+export default ({ bookData, RentAction }) => {
   let statusText = 'Available!';
   let statusClass = 'available';
   let progressBar;
@@ -29,6 +29,10 @@ export default ({ bookData }) => {
     );
   }
 
+  const rent = () => {
+    RentAction(bookData.id);
+  };
+
   return (
     <div className={`book-row-container ${expanded ? 'expanded' : ''}`}>
       <div role="button" onClick={() => setExpansion(!expanded)} className="book">
@@ -42,7 +46,7 @@ export default ({ bookData }) => {
         </div>
       </div>
       <div className="actions-container">
-        <button type="button" className="action-button rent">Rent</button>
+        <button onClick={rent} type="button" className="action-button rent">Rent</button>
         <button type="button" className="action-button info">Info</button>
       </div>
     </div>

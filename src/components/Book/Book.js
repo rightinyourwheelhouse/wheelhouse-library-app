@@ -1,25 +1,32 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
+import ProfileBubble from '../Account/ProfileBubble/ProfileBubble';
 import safeDivide from '../../utils/safeDivide';
 import clamp from '../../utils/clamp';
 import './Book.scss';
 
-export default ({ bookData, RentAction }) => {
+export default ({ bookData, RentAction, Users }) => {
   let statusText = 'Available!';
   let statusClass = 'available';
   let progressBar;
 
   const [expanded, setExpansion] = useState(false);
 
-  if (bookData.rented) {
+  if (bookData.rentee) {
     // If book was rented, we need to determine how far we're into the renting period
-    const elapsedDays = Math.abs(moment().diff(bookData.startDate, 'days'));
-    const progress = clamp(safeDivide(elapsedDays, bookData.rentalPeriod) * 100, 100);
-    const isOverdue = elapsedDays > bookData.rentalPeriod;
+    const elapsedDays = Math.abs(moment().diff(bookData.rentalstartdate, 'days'));
+    const progress = clamp(safeDivide(elapsedDays, bookData.rentalperiod) * 100, 100);
+    const isOverdue = elapsedDays > bookData.rentalperiod;
+    const user = Users.filter(({ id }) => bookData.rentee === id)[0];
 
     // Set the status text to be the name of the renter, and set the color class too
-    statusText = bookData.renter;
+    statusText = (
+      <div className="rentee">
+        <ProfileBubble account={user} small />
+        <span className="username">{user.username}</span>
+      </div>
+    );
     statusClass = `rented ${isOverdue ? 'overdue' : ''}`;
 
     // Make a nice progress bar to immediately see if the book will be available soon

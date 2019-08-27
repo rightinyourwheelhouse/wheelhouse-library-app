@@ -2,7 +2,7 @@ import React from 'react';
 import hashCode, { getColorFromHashCode } from '../../../utils/hash';
 import './ProfileBubble.scss';
 
-export default ({ account, big }) => {
+export default ({ account, big, small }) => {
   let initials = '?';
   let color = '#70b6dd';
 
@@ -19,7 +19,7 @@ export default ({ account, big }) => {
   };
 
   return (
-    <span style={style} className={`profile-bubble ${big ? 'big' : ''}`}>
+    <span style={style} className={`profile-bubble ${big ? 'big' : ''} ${small ? 'small' : ''}`}>
       {account && account.avatar ? null : initials}
     </span>
   );

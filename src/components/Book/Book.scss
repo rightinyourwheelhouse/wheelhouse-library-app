@@ -76,7 +76,7 @@ $margin-size: 2.5px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: calc(100% - 100px);
+      width: calc(100% - 90px);
       margin-left: 5px;
 
       h2.book-title {
@@ -102,6 +102,16 @@ $margin-size: 2.5px;
 
         &.available {
           color: #55ab7a;
+        }
+
+        .rentee {
+          display: flex;
+
+          span.username {
+            margin-left: 5px;
+            text-transform: capitalize;
+            line-height: 20px;
+          }
         }
       }
     }

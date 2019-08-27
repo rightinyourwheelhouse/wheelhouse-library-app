@@ -21,13 +21,17 @@ class Overview extends Component {
 
   handleRentClicked(bookId) {
     const { userReducer: { activeUser } } = this.props;
-    console.log('%cRENT', 'background-color: #1962dd; padding: 5px; border-radius: 3px; font-weight: bold; color: white', activeUser);
-    this.props.bookActions.rentBook(bookId, activeUser.id);
+    this.props.bookActions.rentBook(bookId, activeUser);
   }
 
   render() {
     const books = this.props.bookReducer.books.map(book => (
-      <Book key={book.id} RentAction={this.handleRentClicked} bookData={book} />
+      <Book
+        key={book.id}
+        RentAction={this.handleRentClicked}
+        bookData={book}
+        Users={this.props.userReducer.users}
+      />
     ));
 
     return (

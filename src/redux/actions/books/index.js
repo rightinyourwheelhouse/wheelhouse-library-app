@@ -14,7 +14,7 @@ export function fetchAllBooks() {
     }, (error) => {
       throw error;
     }).then(response => response.json())
-      .then(users => dispatch(fetchAllBooksSuccess(users)))
+      .then(books => dispatch(fetchAllBooksSuccess(books)))
       .catch((error) => {
         dispatch(fetchAllBooksFailed(error));
       });

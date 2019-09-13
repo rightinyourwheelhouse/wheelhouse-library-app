@@ -10,6 +10,7 @@ class Overview extends Component {
     super(props);
 
     this.handleRentClicked = this.handleRentClicked.bind(this);
+    this.handleAddClicked = this.handleAddClicked.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +24,11 @@ class Overview extends Component {
   handleRentClicked(bookId) {
     const { userReducer: { activeUser } } = this.props;
     this.props.bookActions.rentBook(bookId, activeUser);
+  }
+
+  handleAddClicked() {
+    const { history } = this.props;
+    history.push('/books/add');
   }
 
   render() {
@@ -39,7 +45,7 @@ class Overview extends Component {
     return (
       <>
         { books }
-        <AddBookButton />
+        <AddBookButton Click={this.handleAddClicked} />
       </>
     );
   }

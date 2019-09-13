@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,700&display=swap');
 @import 'constants/colors.scss';
+@import 'constants/constants.scss';
+@import 'constants/shadows.scss';
 
 .app {
 	margin: 0 auto;
@@ -8,8 +10,50 @@
 	font-family: 'Libre Franklin', sans-serif;
 	overflow: hidden;
 	overflow-y: auto;
+	color: $dark-text;
 
 	background-color: #f0f0f0;
+
+	.card {
+		padding: 20px;
+		margin: $margin-size;
+		background-color: white;
+		border-radius: 5px;
+		box-shadow: $material-shadow-near;
+	}
+
+	form {
+		.form-group {
+			margin: 10px 0;
+
+			label {
+				font-size: 18px;
+			}
+
+			input {
+				margin-top: 10px;
+				padding: 15px;
+				font-size: 18px;
+				border-radius: 5px;
+				border: 1px solid $theme-secondary-color-lighter-40;
+				outline: none;
+
+				&:focus {
+					border-color: $theme-primary-color-lighter-10;
+				}
+
+				&:active {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	h2 {
+		margin-bottom: 10px;
+		font-size: 24px;
+		font-weight: bold;
+	}
 
 	// OS-based text selection color is too mainstream!
 	::selection {

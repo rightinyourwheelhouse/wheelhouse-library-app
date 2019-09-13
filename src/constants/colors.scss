@@ -1,0 +1,36 @@
+$raccoons-blue: #000FFF;
+$white: white;
+
+$wheelhouse-green: #56c186;
+$wheelhouse-blue: #32435e;
+$wheelhouse-dark-blue: #1c2738;
+
+$theme-primary-color: $wheelhouse-green;
+$theme-primary-color-lighter-10: adjust-color($theme-primary-color, $lightness: 10%);
+$theme-primary-color-lighter-20: adjust-color($theme-primary-color, $lightness: 20%);
+$theme-primary-color-lighter-30: adjust-color($theme-primary-color, $lightness: 30%);
+$theme-primary-color-lighter-40: adjust-color($theme-primary-color, $lightness: 40%);
+$theme-primary-color-darker-10: adjust-color($theme-primary-color, $lightness: -10%);
+$theme-primary-color-darker-20: adjust-color($theme-primary-color, $lightness: -20%);
+$theme-primary-color-darker-30: adjust-color($theme-primary-color, $lightness: -30%);
+$theme-primary-color-darker-40: adjust-color($theme-primary-color, $lightness: -40%);
+
+$theme-secondary-color: $wheelhouse-blue;
+$theme-secondary-color-lighter-10: adjust-color($theme-secondary-color, $lightness: 10%);
+$theme-secondary-color-lighter-20: adjust-color($theme-secondary-color, $lightness: 20%);
+$theme-secondary-color-lighter-30: adjust-color($theme-secondary-color, $lightness: 30%);
+$theme-secondary-color-lighter-40: adjust-color($theme-secondary-color, $lightness: 40%);
+$theme-secondary-color-darker-10: adjust-color($theme-secondary-color, $lightness: -10%);
+$theme-secondary-color-darker-20: adjust-color($theme-secondary-color, $lightness: -20%);
+$theme-secondary-color-darker-30: adjust-color($theme-secondary-color, $lightness: -30%);
+$theme-secondary-color-darker-40: adjust-color($theme-secondary-color, $lightness: -40%);
+
+$theme-background-color: $wheelhouse-dark-blue;
+$theme-background-color-lighter-10: adjust-color($theme-background-color, $lightness: 10%);
+$theme-background-color-lighter-20: adjust-color($theme-background-color, $lightness: 20%);
+$theme-background-color-lighter-30: adjust-color($theme-background-color, $lightness: 30%);
+$theme-background-color-lighter-40: adjust-color($theme-background-color, $lightness: 40%);
+
+
+$dark-text: $wheelhouse-dark-blue;
+$light-text: $white;

@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as bookActions from '../../../redux/actions/books';
 import Book from '../../Book/Book';
+import AddBookButton from '../../Book/AddBookButton';
 
 class Overview extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class Overview extends Component {
     return (
       <>
         { books }
+        <AddBookButton />
       </>
     );
   }

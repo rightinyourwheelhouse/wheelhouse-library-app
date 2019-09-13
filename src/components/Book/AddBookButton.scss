@@ -1,0 +1,15 @@
+@import '../../constants/constants.scss';
+@import '../../constants/colors.scss';
+
+.ghost-book {
+  padding: 20px;
+  background-color: $theme-primary-color;
+  color: $white;
+  margin: $margin-size * 2;
+  border-radius: 5px;
+
+  font-size: 24px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+}

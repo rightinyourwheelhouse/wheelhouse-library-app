@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,700&display=swap');
+@import 'constants/colors.scss';
 
 .app {
 	margin: 0 auto;
@@ -12,8 +13,8 @@
 
 	// OS-based text selection color is too mainstream!
 	::selection {
-    background-color: #1dcb8c;
-    color: white;
+    background-color: $theme-primary-color;
+    color: $dark-text;
 	}
 
 	a {

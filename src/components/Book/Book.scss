@@ -1,6 +1,5 @@
 @import '../../constants/shadows.scss';
-
-$margin-size: 2.5px;
+@import '../../constants/constants.scss';
 
 .book-row-container {
   position: relative;

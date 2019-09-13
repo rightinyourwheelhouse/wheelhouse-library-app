@@ -1,9 +1,11 @@
+@import '../../../constants/colors.scss';
+
 .menu-bar {
   display: flex;
   justify-content: space-between;
   padding: 20px;
 
-  background-color: #000FFF;
+  background-color: $theme-secondary-color;
   color: white;
 
   .title {

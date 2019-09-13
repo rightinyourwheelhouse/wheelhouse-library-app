@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import moment from 'moment';
+import * as bookActionFile from '../../redux/actions/books';
 import ProgressBar from '../UI/ProgressBar/ProgressBar';
 import ProfileBubble from '../Account/ProfileBubble/ProfileBubble';
 import safeDivide from '../../utils/safeDivide';
 import clamp from '../../utils/clamp';
 import './Book.scss';
 
-export default ({ bookData, RentAction, Users }) => {
+const mapDispatchToProps = dispatch => ({
+  bookActions: bindActionCreators(bookActionFile, dispatch),
+});
+
+const mapStateToProps = state => ({
+  ...state,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(({
+  bookData,
+  RentAction,
+  Users,
+  Expanded,
+  bookActions,
+}) => {
   let statusText = 'Available!';
   let statusClass = 'available';
   let progressBar;
-
-  const [expanded, setExpansion] = useState(false);
 
   if (bookData.rentee) {
     // If book was rented, we need to determine how far we're into the renting period
@@ -41,8 +56,8 @@ export default ({ bookData, RentAction, Users }) => {
   };
 
   return (
-    <div className={`book-row-container ${expanded ? 'expanded' : ''}`}>
-      <div role="button" onClick={() => setExpansion(!expanded)} className="book">
+    <div className={`book-row-container ${Expanded ? 'expanded' : ''}`}>
+      <div onClick={() => bookActions.expandBookInformation(bookData.id)} role="button" className="book">
         <img src={bookData.coverimg} alt="Book cover" />
         <div className="info">
           <h2 className="book-title">{bookData.title}</h2>
@@ -58,4 +73,4 @@ export default ({ bookData, RentAction, Users }) => {
       </div>
     </div>
   );
-};
+});

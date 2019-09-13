@@ -31,6 +31,7 @@ class Overview extends Component {
         RentAction={this.handleRentClicked}
         bookData={book}
         Users={this.props.userReducer.users}
+        Expanded={book.expanded}
       />
     ));
 

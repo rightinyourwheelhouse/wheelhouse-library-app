@@ -27,6 +27,10 @@ export function fetchAllBooks() {
   };
 }
 
+export function expandBookInformation(bookId) {
+  return { type: actionTypes.EXPAND_BOOK_INFO, bookId };
+}
+
 export function rentBook(bookId, activeUser) {
   return dispatch => (
     fetch(`${baseURL}${namespace}/books/${bookId}/rent`, {
@@ -43,6 +47,7 @@ export function rentBook(bookId, activeUser) {
       throw error;
     }).then(() => {
       dispatch(associateRentalToBook(bookId, activeUser));
+      dispatch(expandBookInformation(bookId));
     }).catch((error) => {
       dispatch(fetchAllBooksFailed(error));
     }));

@@ -1,5 +1,6 @@
 @import '../../constants/shadows.scss';
 @import '../../constants/constants.scss';
+@import '../../constants/colors.scss';
 
 .book-row-container {
   position: relative;
@@ -25,22 +26,22 @@
       margin: $margin-size;
 
       &.rent {
-        background-color: #68df7e;
-        box-shadow: 0 6px #4eac60;
+        background-color: $theme-primary-color;
+        box-shadow: 0 6px $theme-primary-color-darker-20;
 
         &:active {
           top: 4px;
-          box-shadow: 0 2px #4eac60;
+          box-shadow: 0 2px $theme-primary-color-darker-20;
         }
       }
 
       &.info {
-        background-color: #31aaee;
-        box-shadow: 0 6px #2980b1;
+        background-color: $theme-secondary-color-lighter-10;
+        box-shadow: 0 6px $theme-secondary-color;
 
         &:active {
           top: 4px;
-          box-shadow: 0 2px #2980b1;
+          box-shadow: 0 2px $theme-secondary-color;
         }
       }
     }

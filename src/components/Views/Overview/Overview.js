@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as bookActions from '../../../redux/actions/books';
+import MenuBar from '../../Navigation/MenuBar/MenuBar';
 import Book from '../../Book/Book';
-import AddBookButton from '../../Book/AddBookButton';
+import BookPlaceholder from '../../Book/BookPlaceholder';
 
 class Overview extends Component {
   constructor(props) {
@@ -44,8 +45,9 @@ class Overview extends Component {
 
     return (
       <>
+        <MenuBar Title="Books" />
         { books }
-        <AddBookButton Click={this.handleAddClicked} />
+        <BookPlaceholder Action={this.handleAddClicked} />
       </>
     );
   }

@@ -1,20 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import MenuBar from '../../Navigation/MenuBar/MenuBar';
+import Switch from '../../UI/Switch/Switch';
+import * as bookActionFile from '../../../redux/actions/books';
 import './Add.scss';
 
-export default () => (
-  <div className="card">
-    <h2>Add Book</h2>
-    <form>
-      <div className="form-group">
-        <label htmlFor="isbn">ISBN
-          <input id="isbn" type="text" placeholder="978-3-16-148410-0" />
-        </label>
+const mapDispatchToProps = dispatch => ({
+  bookActions: bindActionCreators(bookActionFile, dispatch),
+});
+
+const mapStateToProps = state => ({
+  ...state,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(({
+  userReducer: {
+    activeUser,
+  },
+  bookActions,
+  history,
+}) => {
+  const [isOwner, setIsOwner] = useState(true);
+  const [ISBN, setISBN] = useState('');
+
+  useEffect(() => {
+    if (!activeUser) {
+      history.push('/users');
+    }
+  });
+
+  const handleSubmit = () => {
+    bookActions.addBook(ISBN, activeUser, isOwner);
+  };
+
+  return (
+    <>
+      <MenuBar Title="Add New Book" />
+      <div className="card add-new-book">
+        <form>
+          <div className="form-group">
+            <label htmlFor="isbn">ISBN
+              <input value={ISBN} onChange={e => setISBN(e.target.value)} id="isbn" type="text" placeholder="978-3-16-148410-0" />
+            </label>
+          </div>
+          <div className="form-group">
+            <Switch Action={() => setIsOwner(!isOwner)} Id="owner" Text="Are you the owner?" On={isOwner} />
+          </div>
+        </form>
+        <button onClick={handleSubmit} type="button" className="primary">Add new book</button>
       </div>
-      <div className="form-group">
-        <label htmlFor="barcode">Barcode (optional)
-          <input id="barcode" type="text" />
-        </label>
-      </div>
-    </form>
-  </div>
-);
+    </>
+  );
+});

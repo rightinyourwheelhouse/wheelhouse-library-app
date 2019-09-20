@@ -11,7 +11,7 @@ export default () => (
           Who rented what? Who sucks at reading? Who to publicly shame? Get started!
         </p>
 
-        <button type="button">
+        <button type="button" className="primary">
           <Link to="/overview">View all the books</Link>
         </button>
 

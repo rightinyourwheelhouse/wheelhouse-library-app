@@ -10,6 +10,32 @@ const associateRentalToBook = (bookId, user) => ({
   user,
 });
 
+export function addBook(ISBN, activeUser, isOwner) {
+  return (dispatch) => {
+    fetch(`${baseURL}${namespace}/books`, {
+      method: 'POST',
+      headers: {
+        'account-id': activeUser.id,
+      },
+      body: JSON.stringify({
+        ISBN,
+        ownerid: isOwner ? activeUser.id : null,
+      }),
+    }).then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error('Could not fetch books properly');
+    }, (error) => {
+      throw error;
+    }).then(response => response.json())
+      .then(books => dispatch(fetchAllBooksSuccess(books)))
+      .catch((error) => {
+        dispatch(fetchAllBooksFailed(error));
+      });
+  };
+}
+
 export function fetchAllBooks() {
   return (dispatch) => {
     fetch(`${baseURL}${namespace}/books`).then((response) => {

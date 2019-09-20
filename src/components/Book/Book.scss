@@ -19,24 +19,13 @@
 
     .action-button {
       width: 90px;
-      position: relative;
       top: 0;
       margin-right: 5px;
       height: calc(100% - #{$margin-size * 2} - 6px);
       margin: $margin-size;
 
-      &.rent {
-        background-color: $theme-primary-color;
-        box-shadow: 0 6px $theme-primary-color-darker-20;
-
-        &:active {
-          top: 4px;
-          box-shadow: 0 2px $theme-primary-color-darker-20;
-        }
-      }
-
       &.info {
-        background-color: $theme-secondary-color-lighter-10;
+        background-color: $theme-secondary-color-lighter-30;
         box-shadow: 0 6px $theme-secondary-color;
 
         &:active {

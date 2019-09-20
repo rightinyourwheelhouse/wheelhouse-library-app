@@ -1,9 +1,18 @@
 @import '../../../constants/colors.scss';
 
+.menu-bar-spacer {
+  display: block;
+  height: 80px;
+}
+
 .menu-bar {
+  position: fixed;
   display: flex;
   justify-content: space-between;
   padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 99;
 
   background-color: $theme-secondary-color;
   color: white;

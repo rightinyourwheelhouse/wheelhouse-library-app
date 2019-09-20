@@ -1,5 +1,12 @@
-form {
-  input {
+.add-new-book {
+  form {
+    input {
+      width: 100%;
+    }
+  }
+
+  button {
+    margin-top: 10px;
     width: 100%;
   }
 }

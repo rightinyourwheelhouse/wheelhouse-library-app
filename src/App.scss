@@ -14,6 +14,32 @@
 
 	background-color: #f0f0f0;
 
+	button {
+		position: relative;
+
+		&.primary {
+			color: white;
+			background-color: $theme-primary-color;
+			box-shadow: 0 6px $theme-primary-color-darker-20;
+
+			&:active {
+				top: 4px;
+				box-shadow: 0 2px $theme-primary-color-darker-20;
+			}
+		}
+
+		&.secondary {
+			color: white;
+			background-color: $theme-secondary-color-lighter-20;
+			box-shadow: 0 6px $theme-secondary-color-lighter-10;
+
+			&:active {
+				top: 4px;
+				box-shadow: 0 2px $theme-secondary-color-lighter-10;
+			}
+		}
+	}
+
 	.card {
 		padding: 20px;
 		margin: $margin-size;
@@ -62,7 +88,7 @@
 	}
 
 	a {
-		color: black;
+		color: unset;
 		text-decoration: none;
 	}
 

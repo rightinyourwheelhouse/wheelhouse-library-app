@@ -68,8 +68,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         </div>
       </div>
       <div className="actions-container">
-        <button onClick={rent} type="button" className="action-button rent">Rent</button>
-        <button type="button" className="action-button info">Info</button>
+        <button onClick={rent} type="button" className="action-button primary">Rent</button>
+        <button type="button" className="action-button secondary">Info</button>
       </div>
     </div>
   );

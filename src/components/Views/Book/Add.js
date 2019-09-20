@@ -31,7 +31,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   });
 
   const handleSubmit = () => {
-    bookActions.addBook(ISBN, activeUser, isOwner);
+    bookActions.addBook(ISBN, activeUser, isOwner).then(() => {
+      history.push('/overview');
+    });
   };
 
   return (
@@ -45,7 +47,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
             </label>
           </div>
           <div className="form-group">
-            <Switch Action={() => setIsOwner(!isOwner)} Id="owner" Text="Are you the owner?" On={isOwner} />
+            <Switch Action={() => setIsOwner(!isOwner)} Id="owner" Text="Are you the owner? When this option is checked, you will be marked as the owner of this book!" On={isOwner} />
           </div>
         </form>
         <button onClick={handleSubmit} type="button" className="primary">Add new book</button>

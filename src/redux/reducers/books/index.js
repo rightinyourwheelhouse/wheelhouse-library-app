@@ -57,6 +57,7 @@ export default function config(state = initialState, action) {
         books: updatedBooks,
       };
     }
+
     default: return state;
   }
 }

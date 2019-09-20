@@ -11,6 +11,7 @@ class Overview extends Component {
     super(props);
 
     this.handleRentClicked = this.handleRentClicked.bind(this);
+    this.handleInfoClicked = this.handleInfoClicked.bind(this);
     this.handleAddClicked = this.handleAddClicked.bind(this);
   }
 
@@ -27,6 +28,12 @@ class Overview extends Component {
     this.props.bookActions.rentBook(bookId, activeUser);
   }
 
+  handleInfoClicked(bookId) {
+    const { history } = this.props;
+
+    history.push(`/book/${bookId}`);
+  }
+
   handleAddClicked() {
     const { history } = this.props;
     history.push('/books/add');
@@ -37,6 +44,7 @@ class Overview extends Component {
       <Book
         key={book.id}
         RentAction={this.handleRentClicked}
+        InfoAction={this.handleInfoClicked}
         bookData={book}
         Users={this.props.userReducer.users}
         Expanded={book.expanded}

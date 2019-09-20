@@ -6,6 +6,7 @@ import Overview from './components/Views/Overview/Overview';
 import Login from './components/Views/Login/Login';
 import Users from './components/Views/Users/Users';
 import Add from './components/Views/Book/Add';
+import BookDetail from './components/Views/Book/Detail';
 import './App.scss';
 
 export default () => (
@@ -15,6 +16,7 @@ export default () => (
       <PrivateRoute path="/overview" component={Overview} />
       <PrivateRoute path="/users" component={Users} />
       <PrivateRoute path="/books/add" component={Add} />
+      <PrivateRoute path="/book/:id" component={BookDetail} />
       <Route path="/login" component={Login} />
     </Switch>
   </div>

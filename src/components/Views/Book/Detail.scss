@@ -1,0 +1,36 @@
+@import '../../../constants/constants.scss';
+@import '../../../constants/colors.scss';
+
+.book-detail {
+  .book-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    img {
+      display: block;
+      max-width: 150px;
+      max-height: 150px;
+      margin-right: 10px;
+
+      border-radius: 5px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      width: 100%;
+
+      .pages-badge {
+        margin-top: 10px;
+        max-width: 60px;
+        padding: 10px;
+        color: $white;
+        background-color: $theme-secondary-color;
+        border-radius: 20px;
+        text-align: center;
+      }
+    }
+  }
+}

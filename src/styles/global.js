@@ -1,10 +1,11 @@
 import { createGlobalStyle, css } from "styled-components";
-import { lighten, darken } from "polished";
+import { lighten } from "polished";
 
 import colors from "./colors";
 import spacing from "./spacing";
 
 export default createGlobalStyle`${css`
+@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,700&display=swap');
 
 // Reset CSS
   html,
@@ -200,21 +201,6 @@ export default createGlobalStyle`${css`
       text-decoration: none;
     }
 
-    button {
-      padding: 16px;
-
-      border-radius: 5px;
-      border: 0;
-      outline: 0;
-      cursor: pointer;
-
-      font-size: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-
-      background-color: black;
-      color: white;
-    }
   }
 
 `}`;

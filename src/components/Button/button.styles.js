@@ -5,6 +5,18 @@ import colors from '../../styles/colors';
 
 export const BaseButton = styled.button`
   position: relative;
+  padding: 16px;
+  border-radius: 5px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  background-color: black;
+  color: white;
 
   &.primary {
     background-color: ${colors.primary};

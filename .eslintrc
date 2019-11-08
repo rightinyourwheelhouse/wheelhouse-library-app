@@ -6,7 +6,6 @@
   "parser": "babel-eslint",
   "plugins": ["react", "react-hooks"],
   "rules": {
-    "prettier/prettier": "error",
     "comma-dangle": [
       "error",
       {
@@ -80,6 +79,7 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
     "sort-keys": [
       "warn",
       "asc",

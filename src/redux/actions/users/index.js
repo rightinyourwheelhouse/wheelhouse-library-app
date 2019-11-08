@@ -4,22 +4,21 @@ import { baseURL, namespace } from '../../../utils/api';
 const fetchAllUsersSuccess = users => ({ type: actionTypes.FETCH_ALL_USERS_SUCCESS, users });
 const fetchAllUsersFailed = error => ({ type: actionTypes.FETCH_ALL_USERS_FAILED, error });
 
-export const setActiveUser = user => ({ type: actionTypes.SET_ACTIVE_USER, user });
+const setActiveUser = (user, token) => ({ type: actionTypes.SET_ACTIVE_USER, user, token });
 
 export function login(code) {
-  return () => {
-    fetch(`${baseURL}${namespace}/auth/slack?code=${code}`).then((response) => {
-      if (response.ok) {
-        return response;
-      }
-      throw new Error('Could not log in properly');
-    }, (error) => {
-      throw error;
-    }).then(response => response.json())
-      .then((response) => {
-        console.log('%cLOGIN RESPONSE', 'background-color: #5a9ac8; padding: 5px; border-radius: 3px; font-weight: bold; color: white', response);
-      });
-  };
+  return dispatch => fetch(`${baseURL}${namespace}/auth/slack?code=${code}`).then((response) => {
+    if (response.ok) {
+      return response;
+    }
+    throw new Error('Could not log in properly');
+  }, (error) => {
+    throw error;
+  }).then(response => response.json())
+    .then((response) => {
+      dispatch(setActiveUser(response.user, response.access_token));
+      return response.user;
+    });
 }
 
 export function fetchAllUsers() {

@@ -13,8 +13,10 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(({
+  history,
   location,
   userActions,
+  userReducer,
 }) => {
   // We extract the code we get from Slack if available
   // This code can be used as an access token by the API
@@ -27,8 +29,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   // Redirect to Slack login when there's no code and not authenticated
   if (!code) {
     result = <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.avatar&client_id=20329357267.759347069140"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>;
-  } else {
-    userActions.login(code);
+  } else if (!userReducer.activeUser) {
+    userActions.login(code).then(() => {
+      history.push('/overview');
+    });
   }
 
   // The actual login is managed by Slack. We effectively show nothing. Pure functional component

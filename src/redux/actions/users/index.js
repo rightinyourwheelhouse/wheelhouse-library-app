@@ -16,7 +16,7 @@ export function login(code) {
     throw error;
   }).then(response => response.json())
     .then((response) => {
-      dispatch(setActiveUser(response.user, response.access_token));
+      dispatch(setActiveUser(response.rows[0], code));
       return response.user;
     });
 }

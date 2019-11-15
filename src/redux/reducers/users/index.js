@@ -18,9 +18,9 @@ export default function config(state = initialState, action) {
     case userActions.SET_ACTIVE_USER: {
       if (action.user) {
         const userObject = {
-          username: action.user.name,
-          email: action.user.email,
-          avatar: action.user.image_192,
+          username: action.user.username,
+          //email: action.user.email,
+          avatar: action.user.avatar,
           token: action.token,
         };
 

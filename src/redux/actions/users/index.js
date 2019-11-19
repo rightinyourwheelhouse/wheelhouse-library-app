@@ -4,7 +4,7 @@ import { baseURL, namespace } from '../../../utils/api';
 const fetchAllUsersSuccess = users => ({ type: actionTypes.FETCH_ALL_USERS_SUCCESS, users });
 const fetchAllUsersFailed = error => ({ type: actionTypes.FETCH_ALL_USERS_FAILED, error });
 
-const setActiveUser = (user, token) => ({ type: actionTypes.SET_ACTIVE_USER, user, token });
+export const setActiveUser = (user, token) => ({ type: actionTypes.SET_ACTIVE_USER, user, token });
 
 export function login(code) {
   return dispatch => fetch(`${baseURL}${namespace}/auth/slack?code=${code}`).then((response) => {
@@ -15,9 +15,23 @@ export function login(code) {
   }, (error) => {
     throw error;
   }).then(response => response.json())
-    .then((response) => {
-      dispatch(setActiveUser(response.rows[0], code));
-      return response.user;
+    .then(({
+      access_token: accessToken,
+      avatar,
+      id,
+      username,
+    }) => {
+      const userObject = {
+        accessToken,
+        user: {
+          avatar,
+          id,
+          username,
+        },
+      };
+
+      dispatch(setActiveUser(userObject.user, accessToken));
+      return userObject;
     });
 }
 

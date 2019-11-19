@@ -14,8 +14,8 @@ const mapStateToProps = state => ({
   ...state,
 });
 
-// Fix voor probleem dat hij meermaals de calls doet omwille van rerender. Tijdelijke oplossing?
-let isCodeSendToApi = false;
+// TEMP Fix voor probleem dat hij meermaals de calls doet omwille van rerender. Tijdelijke oplossing?
+let isCodeSentToApi = false;
 
 export default connect(mapStateToProps, mapDispatchToProps)(({
   location,
@@ -32,8 +32,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   // Redirect to Slack login when there's no code and not authenticated
   if (!code) {
     result = <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.avatar&client_id=20329357267.759347069140"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>;
-  } else if (!isCodeSendToApi) {
-    isCodeSendToApi = true;
+  } else if (!isCodeSentToApi) {
+    isCodeSentToApi = true;
     userActions.login(code);
   } else {
     result = <Redirect to="/" />;

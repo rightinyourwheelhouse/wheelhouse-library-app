@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import useCookie from '../../../hooks/useCookie';
 
 export default function PrivateRoute({ component: Component, ...rest }) {
-  const isAuthenticated = true;
+  const [userObject] = useCookie('user');
+  const isAuthenticated = userObject && JSON.parse(userObject).accessToken;
 
   return (
     <Route

@@ -1,8 +1,9 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import qs from 'query-string';
-import { Redirect } from 'react-router-dom';
+import useCookie from '../../../hooks/useCookie';
 
 import * as userActionFile from '../../../redux/actions/users';
 
@@ -21,6 +22,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   location,
   userActions,
 }) => {
+  const [userObject, setUserObject] = useCookie('user'); // eslint-disable-line
+
   // We extract the code we get from Slack if available
   // This code can be used as an access token by the API
   // Therefore we need to send it off to the API before the user can interact with the app
@@ -34,9 +37,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
     result = <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.avatar&client_id=20329357267.759347069140"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>;
   } else if (!isCodeSentToApi) {
     isCodeSentToApi = true;
-    userActions.login(code);
+    userActions.login(code).then((newUserObject) => {
+      setUserObject(JSON.stringify(newUserObject));
+    });
   } else {
-    result = <Redirect to="/" />;
+    result = <Redirect to="/overview" />;
   }
 
   // The actual login is managed by Slack. We effectively show nothing. Pure functional component

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback} from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as bookActionFile from '../../../redux/actions/books';
@@ -37,15 +37,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
     history.push('/books/add');
   }, [bookReducer.books]);
 
-  const books = bookReducer.books.map(book => (
-    <Book
-      key={book.id}
-      RentAction={handleRentClicked}
-      InfoAction={handleInfoClicked}
-      bookData={book}
-      Users={userReducer.users}
-      Expanded={book.expanded} />
-  ));
+  const books = bookReducer.books.map((book) => {
+    if (userReducer.users.length) {
+      return (
+        <Book
+          key={book.id}
+          RentAction={handleRentClicked}
+          InfoAction={handleInfoClicked}
+          bookData={book}
+          Users={userReducer.users}
+          Expanded={book.expanded} />
+      );
+    }
+    return null;
+  });
 
   return (
     <>

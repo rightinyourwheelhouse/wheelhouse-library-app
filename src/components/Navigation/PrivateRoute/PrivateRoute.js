@@ -17,10 +17,8 @@ export default function PrivateRoute({ component: Component, ...rest }) {
             to={{
               pathname: '/login',
               state: { from: props.location },
-            }}
-          />
+            }} />
         ))
-      }
-    />
+      } />
   );
 }

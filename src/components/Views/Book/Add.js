@@ -24,11 +24,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   const [isOwner, setIsOwner] = useState(true);
   const [ISBN, setISBN] = useState('');
 
-  useEffect(() => {
-    if (!activeUser) {
-      history.push('/users');
-    }
-  });
+  // useEffect(() => {
+  //   if (!activeUser) {
+  //     history.push('/users');
+  //   }
+  // });
 
   const handleSubmit = () => {
     bookActions.addBook(ISBN, activeUser, isOwner).then(() => {
@@ -42,8 +42,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
       <div className="card add-new-book">
         <form>
           <div className="form-group">
-            <label htmlFor="isbn">ISBN
-              <input value={ISBN} onChange={e => setISBN(e.target.value)} id="isbn" type="text" placeholder="978-3-16-148410-0" />
+            <label htmlFor="isbn">
+ISBN
+<input value={ISBN} onChange={e => setISBN(e.target.value)} id="isbn" type="text" placeholder="978-3-16-148410-0" />
             </label>
           </div>
           <div className="form-group">

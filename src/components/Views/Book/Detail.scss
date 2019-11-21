@@ -33,4 +33,29 @@
       }
     }
   }
+
+  .qr {
+    cursor: pointer;
+
+    img {
+      width: 100%;
+    }
+  }
 }
+
+@media print {
+  *{
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+  }
+  .menu-bar, .card > *:not(.qr) {
+    display: none;
+  }
+
+  .qr {
+    img {
+      max-width: 14vw;
+    }
+  }
+ }

@@ -1,7 +1,8 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import MenuBar from '../../Navigation/MenuBar/MenuBar';
 import StatusText from '../../Book/StatusText';
+import useBook from '../../../api/books/useBook';
 import './Detail.scss';
 
 const mapStateToProps = state => ({
@@ -11,26 +12,17 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(
   ({
     userReducer,
-    bookReducer,
-    history,
     match: {
       params: { id },
     },
   }) => {
-    const activeBook = bookReducer.books.find(book => book.id === id);
-    const { qrcode } = activeBook;
-
-    useEffect(() => {
-      if (!userReducer.activeUser) {
-        history.push('/users');
-      }
-    });
+    const { book: activeBook } = useBook(id);
 
     const onQRClick = useCallback(
       () => {
         window.print();
       },
-      [qrcode],
+      [activeBook],
     );
 
     return (
@@ -52,7 +44,7 @@ export default connect(mapStateToProps)(
               </div>
             </div>
             <div className="qr">
-              <img onClick={onQRClick} src={qrcode} alt="qr" />
+              <img onClick={onQRClick} src={activeBook.qrcode} alt="qr" />
             </div>
           </div>
         ) : (

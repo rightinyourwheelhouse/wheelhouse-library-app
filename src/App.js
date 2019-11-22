@@ -44,7 +44,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
       <Switch>
         <Route path="/login" component={Login} />
         <PrivateRoute path={['/', '/overview']} exact component={Overview} />
-
         <PrivateRoute path="/books/add" component={Add} />
         <PrivateRoute path="/book/:id" component={BookDetail} />
       </Switch>

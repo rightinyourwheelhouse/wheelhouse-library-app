@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as bookActionFile from '../../redux/actions/books';
 import StatusText from './StatusText';
+import ActionButton from '../Button/ActionButton';
 import './Book.scss';
 
 const mapDispatchToProps = dispatch => ({
@@ -39,8 +40,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         </div>
       </div>
       <div className="actions-container">
-        <button onClick={handleRent} type="button" className="action-button primary">Rent</button>
-        <button onClick={handleInfo} type="button" className="action-button secondary">Info</button>
+        <ActionButton onClick={handleRent} type="button" color="primary">Rent</ActionButton>
+        <ActionButton onClick={handleInfo} type="button" color="secondary">Info</ActionButton>
       </div>
     </div>
   );

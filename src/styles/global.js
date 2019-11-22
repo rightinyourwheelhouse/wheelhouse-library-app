@@ -1,13 +1,13 @@
-import { createGlobalStyle, css } from "styled-components";
-import { lighten } from "polished";
+import { createGlobalStyle, css } from 'styled-components';
+import { lighten } from 'polished';
 
-import colors from "./colors";
-import spacing from "./spacing";
+import colors from './colors';
+import spacing from './spacing';
 
 export default createGlobalStyle`${css`
-@import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:400,400i,700&display=swap');
 
-// Reset CSS
+  // Reset CSS
   html,
   body,
   div,
@@ -170,11 +170,11 @@ export default createGlobalStyle`${css`
           padding: 15px;
           font-size: 18px;
           border-radius: 5px;
-          border: 1px solid ${lighten("0.4", colors.secundary)};
+          border: 1px solid ${lighten('0.4', colors.secundary)};
           outline: none;
 
           &:focus {
-            border-color: ${lighten("0.1", colors.secundary)};
+            border-color: ${lighten('0.1', colors.secundary)};
           }
 
           &:active {

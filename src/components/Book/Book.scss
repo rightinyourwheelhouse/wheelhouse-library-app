@@ -14,26 +14,9 @@
 
   .actions-container {
     position: absolute;
+    margin: 2.5px 0;
     right: calc(-185px - #{$margin-size * 2});
-    height: 100%;
-
-    .action-button {
-      width: 90px;
-      top: 0;
-      margin-right: 5px;
-      height: calc(100% - #{$margin-size * 2} - 6px);
-      margin: $margin-size;
-
-      &.info {
-        background-color: $theme-secondary-color-lighter-30;
-        box-shadow: 0 6px $theme-secondary-color;
-
-        &:active {
-          top: 4px;
-          box-shadow: 0 2px $theme-secondary-color;
-        }
-      }
-    }
+    height: calc(100% - 5px);
   }
 
   .book {

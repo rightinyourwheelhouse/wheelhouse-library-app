@@ -19,7 +19,6 @@ export default connect(mapStateToProps)(
   }) => {
     const activeBook = bookReducer.books.find(book => book.id === id);
     const { qrcode } = activeBook;
-    console.log('activeBook', activeBook);
 
     useEffect(() => {
       if (!userReducer.activeUser) {

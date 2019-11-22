@@ -17,16 +17,21 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(({
   bookActions,
-  userReducer,
+  userReducer: {
+    activeUser,
+    users,
+  },
   bookReducer,
   history,
 }) => {
   useEffect(() => {
-    bookActions.fetchAllBooks();
-  }, []);
+    if (!users.length) {
+      bookActions.fetchAllBooks();
+    }
+  }, [users]);
 
   const handleRentClicked = useCallback((bookId) => {
-    bookActions.rentBook(bookId, userReducer.activeUser);
+    bookActions.rentBook(bookId, activeUser);
   }, [bookReducer.books]);
 
   const handleInfoClicked = useCallback((bookId) => {
@@ -38,14 +43,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   }, [bookReducer.books]);
 
   const books = bookReducer.books.map((book) => {
-    if (userReducer.users.length) {
+    if (users.length) {
       return (
         <Book
           key={book.id}
           RentAction={handleRentClicked}
           InfoAction={handleInfoClicked}
           bookData={book}
-          Users={userReducer.users}
+          Users={users}
           Expanded={book.expanded} />
       );
     }

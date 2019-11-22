@@ -11,7 +11,9 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(
   ({
-    userReducer,
+    userReducer: {
+      users,
+    },
     match: {
       params: { id },
     },
@@ -28,14 +30,14 @@ export default connect(mapStateToProps)(
     return (
       <>
         <MenuBar Title="Book Detail" />
-        {activeBook ? (
+        {activeBook && users.length ? (
           <div className="card book-detail">
             <h2 className="book-title">{activeBook.title}</h2>
 
             <div className="book-info">
               <img src={activeBook.coverimg} alt="Book cover" />
               <div className="stats">
-                <StatusText Users={userReducer.users} bookData={activeBook} />
+                <StatusText Users={users} bookData={activeBook} />
                 <div className="pages-badge">
                   <span className="fas fa-book-open" />
                   {' '}

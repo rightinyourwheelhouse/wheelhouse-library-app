@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import PrivateRoute from './components/Navigation/PrivateRoute/PrivateRoute';
 import Overview from './components/Views/Overview/Overview';
 import Login from './components/Views/Login/Login';
-import Users from './components/Views/Users/Users';
 import Add from './components/Views/Book/Add';
 import BookDetail from './components/Views/Book/Detail';
 // import './App.scss';

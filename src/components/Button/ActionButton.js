@@ -1,25 +1,17 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import { defaultProps, propTypes } from './propTypes';
 
-import { ActionButton } from './button.styles';
+import { ActionBaseButton } from './button.styles';
 
-const Button = ({
+const ActionButton = ({
   children, color, type, ...props
 }) => (
-  <ActionButton {...props} className={color} color={color} type={type}>
+  <ActionBaseButton {...props} className={color} color={color} type={type}>
     {children}
-  </ActionButton>
+  </ActionBaseButton>
 );
 
-Button.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
-  color: PropTypes.oneOf(['primary', 'secundary']),
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
-};
+ActionButton.propTypes = propTypes;
+ActionButton.defaultProps = defaultProps;
 
-Button.defaultProps = {
-  color: 'primary',
-  type: 'button',
-};
-
-export default memo(Button);
+export default memo(ActionButton);

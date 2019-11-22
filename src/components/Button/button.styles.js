@@ -45,7 +45,7 @@ export const BaseButton = styled.button`
   }
 `;
 
-export const ActionButton = styled(BaseButton)`
+export const ActionBaseButton = styled(BaseButton)`
   width: 90px;
   height: calc(100% - ${shadowSize}px);
   top: 0;

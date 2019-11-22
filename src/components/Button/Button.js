@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import PropTypes from 'prop-types';
+import { defaultProps, propTypes } from './propTypes';
 
 import { BaseButton } from './button.styles';
 
@@ -11,15 +11,7 @@ const Button = ({
   </BaseButton>
 );
 
-Button.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
-  color: PropTypes.oneOf(['primary', 'secundary']),
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
-};
-
-Button.defaultProps = {
-  color: 'primary',
-  type: 'button',
-};
+Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default memo(Button);

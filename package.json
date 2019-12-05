@@ -19,6 +19,7 @@
     "query-string": "^6.8.2",
     "react": "^16.12.0",
     "react-dom": "^16.10.2",
+    "react-qr-reader": "^2.2.1",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",

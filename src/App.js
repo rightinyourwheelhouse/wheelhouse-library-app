@@ -8,6 +8,7 @@ import Overview from './components/Views/Overview/Overview';
 import Login from './components/Views/Login/Login';
 import Add from './components/Views/Book/Add';
 import BookDetail from './components/Views/Book/Detail';
+import Scan from './components/Views/Scan/Scan';
 // import './App.scss';
 import Styles from './styles/global';
 import * as userActionFile from './redux/actions/users';
@@ -48,6 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         <PrivateRoute path={['/', '/overview']} exact component={Overview} />
         <PrivateRoute path="/books/add" component={Add} />
         <PrivateRoute path="/book/:id" component={BookDetail} />
+        <PrivateRoute path="/scan" component={Scan} />
       </Switch>
     </div>
   );

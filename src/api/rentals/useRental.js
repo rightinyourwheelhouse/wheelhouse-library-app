@@ -30,7 +30,7 @@ export default () => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error(`Could not fetch book ID ${bookId}`);
+        throw new Error(response.error);
       });
 
       if (rentedBook) {

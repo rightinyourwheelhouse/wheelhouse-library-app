@@ -59,7 +59,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
 
   return (
     <>
-      <MenuBar Title="Books" />
+      <MenuBar Title="Books" history={history} />
       { books }
       <BookPlaceholder Action={handleAddClicked} />
     </>

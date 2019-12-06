@@ -89,6 +89,8 @@
       }
     ]
   },
+  "jsx-a11y/click-events-have-key-events": "warn",
+  "jsx-a11y/interactive-supports-focus": "warn",
   "settings": {
     "react": {
       "version": "16.4"

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as bookActionFile from '../../redux/actions/books';
 import StatusText from './StatusText';
 import ActionButton from '../Button/ActionButton';
+import useRental from '../../api/rentals/useRental';
 import './Book.scss';
 
 const mapDispatchToProps = dispatch => ({
@@ -16,14 +17,15 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(({
   bookData,
-  RentAction,
   InfoAction,
   Users,
   Expanded,
   bookActions,
 }) => {
+  const { rentBook } = useRental();
+
   const handleRent = () => {
-    RentAction(bookData.id);
+    rentBook(bookData.id);
   };
 
   const handleInfo = () => {

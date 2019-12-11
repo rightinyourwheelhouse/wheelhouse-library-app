@@ -9,6 +9,7 @@ import Login from './components/Views/Login/Login';
 import Add from './components/Views/Book/Add';
 import BookDetail from './components/Views/Book/Detail';
 import Scan from './components/Views/Scan/Scan';
+import Toast from './components/UI/Toast/Toast';
 // import './App.scss';
 import Styles from './styles/global';
 import * as userActionFile from './redux/actions/users';
@@ -51,6 +52,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         <PrivateRoute path="/book/:id" component={BookDetail} />
         <PrivateRoute path="/scan" component={Scan} />
       </Switch>
+      <Toast />
     </div>
   );
 });

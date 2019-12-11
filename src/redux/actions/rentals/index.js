@@ -4,7 +4,7 @@ import { baseURL, namespace } from '../../../utils/api';
 const fetchAllRentalsSuccess = books => ({ type: actionTypes.FETCH_ALL_BOOKS_SUCCESS, books });
 const fetchAllRentalsFailed = error => ({ type: actionTypes.FETCH_ALL_BOOKS_FAILED, error });
 
-export function fetchAllRentals() {
+export default function fetchAllRentals() {
   return (dispatch) => {
     fetch(`${baseURL}${namespace}/rentals`).then((response) => {
       if (response.ok) {

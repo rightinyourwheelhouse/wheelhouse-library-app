@@ -1,10 +1,13 @@
 import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import useCookie from '../../hooks/useCookie';
 import { baseURL, namespace } from '../../utils/api';
+import { showErrorMessage, showSuccessMessage } from '../../redux/actions/messages';
 
 export default () => {
   const [rentInProgress, setRentInProgress] = useState(false);
   const [userObject] = useCookie('user');
+  const dispatch = useDispatch();
 
   const rentBook = useCallback((bookId) => {
     const makeRental = async () => {
@@ -26,11 +29,15 @@ export default () => {
           },
           method: 'POST',
         }
-      ).then((response) => {
+      ).then(async (response) => {
         if (response.ok) {
+          dispatch(showSuccessMessage('It\'s yours... for now!'));
           return response.json();
         }
-        throw new Error(response.error);
+        const errorMessage = await response.text();
+        throw new Error(errorMessage.length ? errorMessage : response.statusText);
+      }).catch((error) => {
+        dispatch(showErrorMessage(error.toString()));
       });
 
       if (rentedBook) {
@@ -50,5 +57,5 @@ export default () => {
 
   return {
     rentBook,
-  }
+  };
 };

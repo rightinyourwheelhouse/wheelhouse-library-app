@@ -34,6 +34,7 @@ export default () => {
     box-shadow: ${({ shadow }) => shadow};
 
     font-size: 18px;
+    line-height: 28px;
     font-weight: bold;
   `;
 

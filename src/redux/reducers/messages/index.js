@@ -8,10 +8,10 @@ export default function config(state = initialState, action) {
   switch (action.type) {
     case messageActions.SHOW_MESSAGE: {
       const { messageQueue } = state;
-      const { color, text } = action;
+      const { color, text, timeout } = action;
       return {
         ...state,
-        messageQueue: [...messageQueue, { color, text }],
+        messageQueue: [...messageQueue, { color, text, timeout }],
       };
     }
     case messageActions.REMOVE_MESSAGE: {
@@ -27,6 +27,11 @@ export default function config(state = initialState, action) {
         messageQueue: newMessageQueue,
       };
     }
+    case messageActions.REMOVE_ALL:
+      return {
+        ...state,
+        messageQueue: [],
+      };
     default: return state;
   }
 }

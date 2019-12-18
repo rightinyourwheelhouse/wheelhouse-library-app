@@ -6,7 +6,7 @@
     "start": "./node_modules/parcel-bundler/bin/cli.js index.html",
     "build": "./node_modules/parcel-bundler/bin/cli.js build index.html",
     "heroku-postbuild": "npm i -g serve",
-    "start:prd": "serve -s dis -l $PORT"
+    "start:prd": "serve -s dist -l $PORT"
   },
   "license": "MIT",
   "eslintConfig": {

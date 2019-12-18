@@ -5,7 +5,7 @@
   "scripts": {
     "start": "./node_modules/parcel-bundler/bin/cli.js index.html",
     "build": "./node_modules/parcel-bundler/bin/cli.js build index.html",
-    "heroku-postbuild": "npm i -g serve && npm i -g serve-favicon",
+    "heroku-postbuild": "npm i -g serve && npm run build",
     "start:prd": "serve -s dist"
   },
   "license": "MIT",
@@ -43,7 +43,7 @@
   "devDependencies": {},
   "babel": {
     "presets": [
-      "nano-react-app"
+      "create-react-app"
     ],
     "plugins": [
       [

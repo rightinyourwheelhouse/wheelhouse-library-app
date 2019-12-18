@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import QrReader from 'react-qr-reader';
-import * as colors from '../../../styles/colors';
+import * as colors from 'styles/colors';
 import MenuBar from '../../Navigation/MenuBar/MenuBar';
 import useRental from '../../../api/rentals/useRental';
 

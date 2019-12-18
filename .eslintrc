@@ -2,7 +2,7 @@
   "env": {
     "browser": true
   },
-  "extends": ["airbnb"],
+  "extends": ["react-app", "airbnb"],
   "parser": "babel-eslint",
   "plugins": ["react", "react-hooks"],
   "rules": {
@@ -36,6 +36,7 @@
     "no-console": ["warn"],
     "no-param-reassign": "warn",
     "no-unused-expressions": "error",
+    "import/no-absolute-path": "off",
     "react/forbid-prop-types": [
       "error",
       {
@@ -92,6 +93,11 @@
     "jsx-a11y/interactive-supports-focus": "warn",
   },
   "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    },
     "react": {
       "version": "16.4"
     }

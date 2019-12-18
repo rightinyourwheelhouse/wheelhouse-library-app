@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "dev:start": "./node_modules/parcel-bundler/bin/cli.js index.html",
-    "start": "./node_modules/parcel-bundler/bin/cli.js build index.html",
-    "build": "./node_modules/parcel-bundler/bin/cli.js build index.html"
+    "start": "./node_modules/parcel-bundler/bin/cli.js index.html",
+    "build": "./node_modules/parcel-bundler/bin/cli.js build index.html",
+    "heroku-postbuild": "npm i -g serve",
+    "start:prd": "serve -s dist"
   },
   "license": "MIT",
   "eslintConfig": {

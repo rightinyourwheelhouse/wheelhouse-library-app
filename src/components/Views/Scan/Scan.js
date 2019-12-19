@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import QrReader from 'react-qr-reader';
-import * as colors from 'styles/colors';
+// import * as colors from 'styles/colors';
 import MenuBar from '../../Navigation/MenuBar/MenuBar';
 import useRental from '../../../api/rentals/useRental';
 
@@ -23,7 +23,7 @@ export default ({
   const ScannerCanvas = styled.div`
     border-radius: 20px;
     overflow: hidden;
-    border: 5px solid ${colors.textDark};
+    border: 5px solid #32435e;
   `;
 
   return (

@@ -24,12 +24,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
 }) => {
   const [isOwner, setIsOwner] = useState(true);
   const [ISBN, setISBN] = useState('');
+  const [validationError, setValidationError] = useState('');
 
   const handleSubmit = () => {
-    bookActions.addBook(ISBN, activeUser, isOwner).then(() => {
-      history.push('/overview');
-    });
+    if(isISBNValid()){
+      bookActions.addBook(ISBN, activeUser, isOwner).then(() => {
+        history.push('/overview');
+      });
+    }
   };
+
+  const isISBNValid = () => {
+    let strippedISBN = ISBN.replace(/-/g, "");;
+      if(strippedISBN.length === 10 || strippedISBN.length === 13){
+        setValidationError('');
+        return true;
+      }
+      setValidationError("ISBN is incorrect");
+    return false;
+  }
 
   return (
     <>
@@ -45,6 +58,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
           <div className="form-group">
             <Switch Action={() => setIsOwner(!isOwner)} Id="owner" Text="Are you the owner? When this option is checked, you will be marked as the owner of this book!" On={isOwner} />
           </div>
+          <p className="validationError">{validationError}</p>
         </form>
         <Button onClick={handleSubmit} type="button" className="primary">Add new book</Button>
       </div>

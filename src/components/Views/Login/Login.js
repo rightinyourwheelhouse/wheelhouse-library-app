@@ -35,6 +35,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
 
   // Redirect to Slack login when there's no code and not authenticated
   if (!code) {
+    const queryParams = Object.entries({
+      scope: 'identity.basic,identity.email,identity.avatar',
+      client_id: '20329357267.759347069140',
+      redirect_uri: process.env.REACT_APP_SLACK_CALLBACK_URL,
+    })
+      .filter(([key, value]) => value && key)
+      .map(([key, value]) => `${key}=${value}`);
+    const href = `https://slack.com/oauth/authorize?${queryParams.join('&')}`;
     result = (
       <LoginContainer>
         <p>
@@ -43,7 +51,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         <p>
           Sign in to get started!
         </p>
-        <LoginButton href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.avatar&client_id=20329357267.759347069140"><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></LoginButton>
+        <LoginButton href={href}><img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></LoginButton>
       </LoginContainer>
     );
   } else if (!isCodeSentToApi) {

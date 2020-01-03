@@ -27,6 +27,10 @@ export const BaseButton = styled.button`
     box-shadow: 0 ${shadowSize}px ${darken('0.2', colors.primary)};
     color: white;
 
+    &:disabled{
+      opacity:0.4;
+    }
+
     &:active {
       box-shadow: 0 ${shadowSizePressed}px ${darken('0.2', colors.primary)};
       top: ${shadowDifference}px;

@@ -42,8 +42,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         </div>
       </div>
       <div className="actions-container">
-        <ActionButton onClick={handleRent} type="button" color="primary">Rent</ActionButton>
-        <ActionButton onClick={handleInfo} type="button" color="secondary">Info</ActionButton>
+        <ActionButton onClick={handleRent} type="button" color="primary" isDisabled={bookData.rentee ? true : false}>Rent</ActionButton>
+        <ActionButton onClick={handleInfo} type="button" color="secondary" isDisabled={false}>Info</ActionButton>
       </div>
     </div>
   );

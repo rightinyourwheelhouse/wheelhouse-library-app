@@ -9,12 +9,12 @@ export default ({
   history,
 }) => {
   const [snapped, setSnapped] = useState(false);
-  const { rentBook } = useRental();
+  const { rentOrReturnBook } = useRental();
 
   const handleScan = async (data) => {
     if (data && !snapped) {
       setSnapped(true);
-      const result = await rentBook(data);
+      const result = await rentOrReturnBook(data);
       console.log('%cSCAN', 'background-color: #f2e537; padding: 5px; border-radius: 3px; font-weight: bold; color: #403a07', result);
       history.push(`/book/${result.id}`);
     }

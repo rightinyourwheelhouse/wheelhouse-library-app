@@ -18,10 +18,10 @@ export default function config(state = initialState, action) {
     case userActions.SET_ACTIVE_USER: {
       if (action.user) {
         const userObject = {
-          username: action.user.username,
-          //email: action.user.email,
           avatar: action.user.avatar,
+          id: action.user.id,
           token: action.token,
+          username: action.user.username,
         };
 
         localStorage.setItem('active-user', JSON.stringify(userObject));

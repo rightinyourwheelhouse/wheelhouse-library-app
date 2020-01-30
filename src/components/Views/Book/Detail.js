@@ -24,7 +24,7 @@ export default connect(mapStateToProps)(
       () => {
         window.print();
       },
-      [activeBook],
+      [],
     );
 
     return (

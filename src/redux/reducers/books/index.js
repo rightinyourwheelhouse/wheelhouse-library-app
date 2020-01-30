@@ -18,20 +18,17 @@ export default function config(state = initialState, action) {
         books: booksWithFlags,
       };
     }
-    case bookActions.ASSOCIATE_RENTAL_WITH_BOOK: {
+    case bookActions.UPDATE_BOOK_SUCCESS: {
       const { books } = state;
-      const { bookId, user: { id: userId } } = action;
+      const { id: bookId } = action.book;
 
       const updatedBooks = [...books].map((book) => {
         const modifiedBook = { ...book };
         const { id: currentBookId } = book;
 
         if (bookId === currentBookId) {
-          const timeStamp = new Date().toISOString();
-          modifiedBook.rentee = userId;
-          modifiedBook.rentalstartdate = timeStamp;
+          return { ...action.book };
         }
-
         return modifiedBook;
       });
 

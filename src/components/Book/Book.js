@@ -20,12 +20,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   InfoAction,
   Users,
   Expanded,
+  ActiveUser,
   bookActions,
 }) => {
-  const { rentBook } = useRental();
+  const { rentOrReturnBook } = useRental();
 
-  const handleRent = () => {
-    rentBook(bookData.id);
+  const handleRent = async () => {
+    bookActions.updateBook(await rentOrReturnBook(bookData));
   };
 
   const handleInfo = () => {
@@ -42,7 +43,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         </div>
       </div>
       <div className="actions-container">
-        <ActionButton onClick={handleRent} type="button" color="primary" isDisabled={bookData.rentee ? true : false}>Rent</ActionButton>
+        <ActionButton onClick={handleRent} type="button" color="primary" isDisabled={bookData.rentee && bookData.rentee !== ActiveUser.id}>
+          {bookData.rentee === ActiveUser.id ? 'Return' : 'Rent'}
+        </ActionButton>
         <ActionButton onClick={handleInfo} type="button" color="secondary" isDisabled={false}>Info</ActionButton>
       </div>
     </div>

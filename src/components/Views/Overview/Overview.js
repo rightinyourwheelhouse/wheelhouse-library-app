@@ -51,6 +51,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
           InfoAction={handleInfoClicked}
           bookData={book}
           Users={users}
+          ActiveUser={activeUser}
           Expanded={book.expanded} />
       );
     }

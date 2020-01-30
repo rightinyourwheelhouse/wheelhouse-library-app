@@ -14,10 +14,9 @@ const addNewBookFailed = error => ({
   error,
 });
 
-const associateRentalToBook = (bookId, user) => ({
-  type: actionTypes.ASSOCIATE_RENTAL_WITH_BOOK,
-  bookId,
-  user,
+const updateBookSuccess = book => ({
+  type: actionTypes.UPDATE_BOOK_SUCCESS,
+  book,
 });
 
 export function addBook(ISBN, activeUser, isOwner) {
@@ -49,6 +48,12 @@ export function addBook(ISBN, activeUser, isOwner) {
   };
 }
 
+export function updateBook(book) {
+  return (dispatch) => {
+    dispatch(updateBookSuccess(book));
+  };
+}
+
 export function fetchAllBooks() {
   return (dispatch) => {
     fetch(`${baseURL}${namespace}/books`).then((response) => {
@@ -68,26 +73,4 @@ export function fetchAllBooks() {
 
 export function expandBookInformation(bookId) {
   return { type: actionTypes.EXPAND_BOOK_INFO, bookId };
-}
-
-export function rentBook(bookId, activeUser) {
-  return dispatch => (
-    fetch(`${baseURL}${namespace}/books/${bookId}/rent`, {
-      method: 'POST',
-      headers: {
-        'account-id': activeUser.id,
-      },
-    }).then((response) => {
-      if (response.ok) {
-        return response;
-      }
-      throw new Error('Could not fetch books properly');
-    }, (error) => {
-      throw error;
-    }).then(() => {
-      dispatch(associateRentalToBook(bookId, activeUser));
-      dispatch(expandBookInformation(bookId));
-    }).catch((error) => {
-      dispatch(fetchAllBooksFailed(error));
-    }));
 }

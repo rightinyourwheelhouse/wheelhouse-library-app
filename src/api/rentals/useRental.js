@@ -8,22 +8,14 @@ export default () => {
   const [userObject] = useCookie('user');
   const { showMessage } = useToast();
 
-  const rentBook = useCallback((bookId) => {
-    const makeRental = async () => {
-      const {
-        accessToken,
-        user: {
-          id: userId,
-        },
-      } = JSON.parse(userObject);
-
-      setRentInProgress(true);
-      const rentedBook = await fetch(
+  const rentOrReturnBook = useCallback((book) => {
+    async function rentBook(bookId, accessToken, userId) {
+      return fetch(
         `${baseURL}${namespace}/books/${bookId}/rent`,
         {
           headers: {
-            'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
             'account-id': userId,
           },
           method: 'POST',
@@ -38,6 +30,44 @@ export default () => {
       }).catch((error) => {
         showMessage(error.toString(), MESSAGE_TYPES.ERROR);
       });
+    }
+
+    async function returnBook(bookId, accessToken, userId) {
+      return fetch(`${baseURL}${namespace}/books/${bookId}/return`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+            'account-id': userId,
+          },
+          method: 'POST',
+        }).then(async (response) => {
+        if (response.ok) {
+          showMessage('Aaaaand it\'s gone', 'success', MESSAGE_TYPES.SUCCESS);
+          return response.json();
+        }
+        const errorMessage = await response.text();
+        throw new Error(errorMessage.length ? errorMessage : response.statusText);
+      }).catch((error) => {
+        showMessage(error.toString(), MESSAGE_TYPES.ERROR);
+      });
+    }
+
+    const makeRental = async ({ rentee, id: bookId }) => {
+      const {
+        accessToken,
+        user: {
+          id: userId,
+        },
+      } = JSON.parse(userObject);
+
+      setRentInProgress(true);
+      let rentedBook;
+      if (rentee === userId) {
+        rentedBook = await returnBook(bookId, accessToken, userId);
+      } else {
+        rentedBook = await rentBook(bookId, accessToken, userId);
+      }
 
       if (rentedBook) {
         setRentInProgress(false);
@@ -48,13 +78,13 @@ export default () => {
     };
 
     if (!rentInProgress) {
-      return makeRental(bookId);
+      return makeRental(book);
     }
 
     return null;
-  }, [userObject]);
+  }, [rentInProgress, showMessage, userObject]);
 
   return {
-    rentBook,
+    rentOrReturnBook,
   };
 };

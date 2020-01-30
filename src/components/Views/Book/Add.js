@@ -26,23 +26,23 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   const [ISBN, setISBN] = useState('');
   const [validationError, setValidationError] = useState('');
 
+  const isISBNValid = () => {
+    const strippedISBN = ISBN.replace(/-/g, '');
+    if (strippedISBN.length === 10 || strippedISBN.length === 13) {
+      setValidationError('');
+      return true;
+    }
+    setValidationError('ISBN is incorrect');
+    return false;
+  };
+
   const handleSubmit = () => {
-    if(isISBNValid()){
+    if (isISBNValid()) {
       bookActions.addBook(ISBN, activeUser, isOwner).then(() => {
         history.push('/overview');
       });
     }
   };
-
-  const isISBNValid = () => {
-    let strippedISBN = ISBN.replace(/-/g, "");;
-      if(strippedISBN.length === 10 || strippedISBN.length === 13){
-        setValidationError('');
-        return true;
-      }
-      setValidationError("ISBN is incorrect");
-    return false;
-  }
 
   return (
     <>

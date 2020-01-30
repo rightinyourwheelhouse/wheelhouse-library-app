@@ -26,7 +26,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   const { rentOrReturnBook } = useRental();
 
   const handleRent = async () => {
-    bookActions.updateBook(await rentOrReturnBook(bookData));
+    const updatedBook = await rentOrReturnBook(bookData);
+    if (updatedBook) {
+      bookActions.updateBook(updatedBook);
+    }
   };
 
   const handleInfo = () => {

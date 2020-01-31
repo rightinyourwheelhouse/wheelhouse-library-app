@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import QrReader from 'react-qr-reader';
 // import * as colors from 'styles/colors';
@@ -26,11 +26,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   useEffect(() => {
     bookActions.fetchAllBooks();
   }, [bookActions]);
+
   const { showMessage } = useToast();
   const [snapped, setSnapped] = useState(false);
   const { rentOrReturnBook } = useRental();
 
-  const handleScan = async (bookId) => {
+  async function handleScan(bookId) {
     if (bookId && !snapped) {
       setSnapped(true);
       const book = bookReducer.books.find(book => book.id === bookId);
@@ -42,7 +43,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
         showMessage('Unkown book!', MESSAGE_TYPES.ERROR);
       }
     }
-  };
+  }
+
+  async function handleError(err) {
+    showMessage(err, MESSAGE_TYPES.ERROR);
+  }
 
   const ScannerCanvas = styled.div`
     border-radius: 20px;
@@ -61,7 +66,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
           <QrReader
             delay={300}
             onScan={handleScan}
-            onError
+            onError={handleError}
             style={{ width: '100%' }} />
         </ScannerCanvas>
       </div>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { darken, lighten } from 'polished';
 import colors from '../../styles/colors';
+import spacing from '../../styles/spacing';
 
 const shadowSize = 6;
 const shadowSizePressed = 2;
@@ -50,12 +51,12 @@ export const BaseButton = styled.button`
 `;
 
 export const ActionBaseButton = styled(BaseButton)`
-  width: 90px;
+  width: ${spacing.buttonSize};
   height: calc(100% - ${shadowSize}px);
   top: 0;
   margin-right: 5px;
-  height: calc(100% - #{$margin-size * 2} - 6px);
-  margin: $margin-size;
+  height: calc(100% - #{${spacing.defaultMargin} * 2} - 6px);
+  margin: ${spacing.defaultMargin};
 
   &.info {
     background-color: $theme-secondary-color-lighter-30;

@@ -9,13 +9,13 @@
   transition: all 0.3s ease-in-out;
 
   &.expanded {
-    left: -195px;
+    left: calc(-#{$button-size * 2} - #{$margin-size * 6});;
   }
 
   .actions-container {
     position: absolute;
     margin: 2.5px 0;
-    right: calc(-185px - #{$margin-size * 2});
+    right: calc(-#{$button-size * 2} - #{$margin-size * 4});
     height: calc(100% - 5px);
   }
 

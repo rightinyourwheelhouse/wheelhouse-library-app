@@ -37,6 +37,16 @@ export default function config(state = initialState, action) {
         books: updatedBooks,
       };
     }
+    case bookActions.ADD_NEW_BOOK_SUCCESS: {
+      const { books } = state;
+
+      const updatedBooks = [...books].concat({ ...action.newBook });
+
+      return {
+        ...state,
+        books: updatedBooks,
+      };
+    }
 
     case bookActions.EXPAND_BOOK_INFO: {
       const updatedBooks = state.books.map((book) => {

@@ -17,14 +17,8 @@ export default function config(state = initialState, action) {
       };
     case userActions.SET_ACTIVE_USER: {
       if (action.user) {
-        const userObject = {
-          avatar: action.user.avatar,
-          id: action.user.id,
-          token: action.token,
-          username: action.user.username,
-        };
+        const userObject = { ...action.user };
 
-        localStorage.setItem('active-user', JSON.stringify(userObject));
         updateAuthenticationHeader(action.token);
 
         return {

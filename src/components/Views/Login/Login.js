@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -59,7 +59,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
     userActions.login(code).then((newUserObject) => {
       setUserObject(JSON.stringify(newUserObject));
     });
-  } else {
+  } else if (userObject) {
     result = <Redirect to="/overview" />;
   }
 

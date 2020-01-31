@@ -38,6 +38,9 @@ export default () => {
     font-size: 18px;
     line-height: 28px;
     font-weight: bold;
+    svg {
+      height: unset;
+    }
   `;
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {faArrowLeft, faBackward, faQrcode} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faQrcode } from '@fortawesome/free-solid-svg-icons';
 import './MenuBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProfileBubble from '../../Account/ProfileBubble/ProfileBubble';

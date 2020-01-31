@@ -28,19 +28,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
     if (!users.length) {
       bookActions.fetchAllBooks();
     }
-  }, [users]);
+  }, [bookActions, users]);
 
   const handleRentClicked = useCallback((bookId) => {
     bookActions.rentBook(bookId, activeUser);
-  }, [bookReducer.books]);
+  }, [activeUser, bookActions]);
 
   const handleInfoClicked = useCallback((bookId) => {
     history.push(`/book/${bookId}`);
-  }, [bookReducer.books]);
+  }, [history]);
 
   const handleAddClicked = useCallback(() => {
     history.push('/books/add');
-  }, [bookReducer.books]);
+  }, [history]);
 
   const books = bookReducer.books.map((book) => {
     if (users.length) {

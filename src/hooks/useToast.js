@@ -6,31 +6,31 @@ import {
 } from '../redux/actions/messages';
 
 export const MESSAGE_TYPES = {
-  SUCCESS: 'success',
-  WARN: 'warn',
   ERROR: 'error',
   INFO: 'info',
+  SUCCESS: 'success',
+  WARN: 'warn',
 };
 
 export default () => {
   const dispatch = useDispatch();
 
   const colors = {
-    success: '#19cd7c',
-    warn: '#eb981d',
     error: '#e44c31',
     info: '#104ce7',
+    success: '#19cd7c',
+    warn: '#eb981d',
   };
 
   const showMessage = useCallback((text, messageType, delay = 5000) => {
     const color = colors[messageType];
 
     dispatch(showMessageAction(text, color, delay));
-  }, []);
+  }, [colors, dispatch]);
 
   const clearAllMessages = useCallback(() => {
     dispatch(removeAllMessages());
-  }, []);
+  }, [dispatch]);
 
   return {
     clearAllMessages,

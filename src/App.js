@@ -30,17 +30,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   },
 }) => {
   const [userObject] = useCookie('user');
+
   // Always fetch all users to be able to work with them in rentals
   useEffect(() => {
     userActions.fetchAllUsers();
-  }, []);
+  }, [userActions]);
 
   useEffect(() => {
     if (!activeUser && userObject) {
       const { user, accessToken } = JSON.parse(userObject);
       userActions.setActiveUser(user, accessToken);
     }
-  }, [userObject]);
+  }, [activeUser, userActions, userObject]);
 
   return (
     <div className="app">

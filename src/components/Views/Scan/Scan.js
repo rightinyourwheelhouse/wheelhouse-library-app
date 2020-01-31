@@ -28,7 +28,7 @@ export default ({
 
   return (
     <>
-      <MenuBar Title="Book Detail" history={history} />
+      <MenuBar Title="Scan Book" history={history} Back/>
 
       <div className="card book-detail">
         <h2 className="book-title">Rent book by QR code</h2>

@@ -32,7 +32,7 @@ export default connect(mapStateToProps)(
 
     return (
       <>
-        <MenuBar Title="Book Detail" history={history} />
+        <MenuBar Title="Book Detail" history={history} Back />
         {activeBook && users.length ? (
           <div className="card book-detail">
             <h2 className="book-title">{activeBook.title}</h2>

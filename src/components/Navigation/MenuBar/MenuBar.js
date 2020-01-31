@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { faQrcode } from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faBackward, faQrcode} from '@fortawesome/free-solid-svg-icons';
 import './MenuBar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProfileBubble from '../../Account/ProfileBubble/ProfileBubble';
@@ -11,15 +11,22 @@ const MenuBar = ({
     activeUser,
   },
   history,
+  Back,
 }) => {
   const navigateToScan = () => {
     history.push('/scan');
+  };
+  const navigateBack = () => {
+    history.goBack();
   };
 
   return (
     <>
       <nav className="menu-bar">
-        <h1 className="title">{Title}</h1>
+        <div className="title-bar">
+          { Back ? <FontAwesomeIcon onClick={navigateBack} role="button" icon={faArrowLeft} /> : ''}
+          <h1 className="title">{Title}</h1>
+        </div>
         <div className="control-bar">
           <FontAwesomeIcon onClick={navigateToScan} role="button" icon={faQrcode} />
           <ProfileBubble account={activeUser} />

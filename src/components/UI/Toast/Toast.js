@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -44,7 +46,7 @@ export default () => {
         messages.map(({ color, text }, index) => (
           <ToastMessage color={color} shadow={constants.materialShadowMid}>
             {text}
-            <span onClick={() => dispatch(removeMessage(index))} role="button" className="fas fa-times" />
+            <FontAwesomeIcon onClick={() => dispatch(removeMessage(index))} role="button" icon={faTimes} />
           </ToastMessage>
         ))
       }

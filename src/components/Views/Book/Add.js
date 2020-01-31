@@ -46,7 +46,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
 
   return (
     <>
-      <MenuBar Title="Add New Book" />
+      <MenuBar Title="Add New Book" history={history} />
       <div className="card add-new-book">
         <form>
           <div className="form-group">

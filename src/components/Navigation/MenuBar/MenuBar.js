@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ProfileBubble from '../../Account/ProfileBubble/ProfileBubble';
+import { faQrcode } from '@fortawesome/free-solid-svg-icons';
 import './MenuBar.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ProfileBubble from '../../Account/ProfileBubble/ProfileBubble';
 
 const MenuBar = ({
   Title,
@@ -19,7 +21,7 @@ const MenuBar = ({
       <nav className="menu-bar">
         <h1 className="title">{Title}</h1>
         <div className="control-bar">
-          <span role="button" className="fas fa-qrcode" onClick={navigateToScan} />
+          <FontAwesomeIcon onClick={navigateToScan} role="button" icon={faQrcode} />
           <ProfileBubble account={activeUser} />
         </div>
       </nav>

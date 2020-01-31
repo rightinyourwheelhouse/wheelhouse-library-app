@@ -27,10 +27,11 @@
     display: flex;
     justify-content: space-between;
 
-    span {
+    svg {
       font-size: 24px;
       line-height: 40px;
       vertical-align: middle;
+      height: unset;
     }
 
     & > * {

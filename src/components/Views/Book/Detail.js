@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import MenuBar from '../../Navigation/MenuBar/MenuBar';
 import StatusText from '../../Book/StatusText';
 import useBook from '../../../api/books/useBook';
@@ -17,6 +19,7 @@ export default connect(mapStateToProps)(
     match: {
       params: { id },
     },
+    history,
   }) => {
     const { book: activeBook } = useBook(id);
 
@@ -29,7 +32,7 @@ export default connect(mapStateToProps)(
 
     return (
       <>
-        <MenuBar Title="Book Detail" />
+        <MenuBar Title="Book Detail" history={history} />
         {activeBook && users.length ? (
           <div className="card book-detail">
             <h2 className="book-title">{activeBook.title}</h2>
@@ -39,7 +42,7 @@ export default connect(mapStateToProps)(
               <div className="stats">
                 <StatusText Users={users} bookData={activeBook} />
                 <div className="pages-badge">
-                  <span className="fas fa-book-open" />
+                  <FontAwesomeIcon icon={faBookOpen} />
                   {' '}
                   {activeBook.pages}
                 </div>

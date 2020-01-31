@@ -28,7 +28,7 @@ export default ({
 
   return (
     <>
-      <MenuBar Title="Book Detail" />
+      <MenuBar Title="Book Detail" history={history} />
 
       <div className="card book-detail">
         <h2 className="book-title">Rent book by QR code</h2>
@@ -37,6 +37,7 @@ export default ({
           <QrReader
             delay={300}
             onScan={handleScan}
+            onError
             style={{ width: '100%' }} />
         </ScannerCanvas>
       </div>

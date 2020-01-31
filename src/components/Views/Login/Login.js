@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import qs from 'query-string';
@@ -22,6 +21,7 @@ let isCodeSentToApi = false;
 export default connect(mapStateToProps, mapDispatchToProps)(({
   location,
   userActions,
+  history,
 }) => {
   const [userObject, setUserObject] = useCookie('user'); // eslint-disable-line
 
@@ -58,11 +58,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
     isCodeSentToApi = true;
     userActions.login(code).then((newUserObject) => {
       setUserObject(JSON.stringify(newUserObject));
+      history.push('/overview');
     });
-  } else if (userObject) {
-    result = <Redirect to="/overview" />;
   }
-
   // The actual login is managed by Slack. We effectively show nothing. Pure functional component
   return result;
 });

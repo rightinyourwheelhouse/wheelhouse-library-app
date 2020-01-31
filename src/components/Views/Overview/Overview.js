@@ -25,10 +25,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
   history,
 }) => {
   useEffect(() => {
-    if (!users.length) {
-      bookActions.fetchAllBooks();
-    }
-  }, [bookActions, users]);
+    bookActions.fetchAllBooks();
+  }, [bookActions]);
 
   const handleRentClicked = useCallback((bookId) => {
     bookActions.rentBook(bookId, activeUser);

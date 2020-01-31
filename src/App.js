@@ -10,7 +10,6 @@ import Add from './components/Views/Book/Add';
 import BookDetail from './components/Views/Book/Detail';
 import Scan from './components/Views/Scan/Scan';
 import Toast from './components/UI/Toast/Toast';
-// import './App.scss';
 import Styles from './styles/global';
 import * as userActionFile from './redux/actions/users';
 import useCookie from './hooks/useCookie';

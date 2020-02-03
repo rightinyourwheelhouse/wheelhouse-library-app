@@ -46,8 +46,8 @@ export default () => {
   return (
     <ToastContainer>
       {
-        messages.map(({ color, text }, index) => (
-          <ToastMessage color={color} shadow={constants.materialShadowMid}>
+        messages.map(({ color, text, key }, index) => (
+          <ToastMessage color={color} shadow={constants.materialShadowMid} key={key}>
             {text}
             <FontAwesomeIcon onClick={() => dispatch(removeMessage(index))} role="button" icon={faTimes} />
           </ToastMessage>

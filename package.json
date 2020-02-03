@@ -24,6 +24,7 @@
     "polished": "^3.4.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.8.2",
+    "random-uuid-v4": "0.0.9",
     "react": "^16.12.0",
     "react-dom": "^16.10.2",
     "react-qr-reader": "^2.2.1",

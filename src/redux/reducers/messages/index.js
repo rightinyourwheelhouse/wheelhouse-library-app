@@ -1,3 +1,4 @@
+import uuid from 'random-uuid-v4';
 import * as messageActions from '../../actions/messages/types';
 
 const initialState = {
@@ -11,7 +12,12 @@ export default function config(state = initialState, action) {
       const { color, text, timeout } = action;
       return {
         ...state,
-        messageQueue: [...messageQueue, { color, text, timeout }],
+        messageQueue: [...messageQueue, {
+          color,
+          key: uuid(),
+          text,
+          timeout,
+        }],
       };
     }
     case messageActions.REMOVE_MESSAGE: {

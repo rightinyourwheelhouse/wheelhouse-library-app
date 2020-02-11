@@ -10,7 +10,7 @@ const shadowDifference = shadowSize - shadowSizePressed;
 
 export const BaseButton = styled.button`
   position: relative;
-  padding: 16px;
+  padding: 10px;
   border-radius: 5px;
   border: 0;
   outline: 0;

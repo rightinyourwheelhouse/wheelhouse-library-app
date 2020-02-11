@@ -172,6 +172,7 @@ export default createGlobalStyle`${css`
           border-radius: 5px;
           border: 1px solid ${lighten('0.4', colors.secundary)};
           outline: none;
+          box-sizing: border-box;
 
           &:focus {
             border-color: ${lighten('0.1', colors.secundary)};

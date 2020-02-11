@@ -162,7 +162,8 @@ export default createGlobalStyle`${css`
         margin: 10px 0;
 
         label {
-          font-size: 18px;
+          font-size: 16px;
+          line-height: 1.5;
         }
 
         input {

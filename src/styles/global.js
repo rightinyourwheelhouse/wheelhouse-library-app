@@ -112,6 +112,10 @@ export default createGlobalStyle`${css`
     display: block;
   }
 
+  html {
+    background-color: #f0f0f0;
+  }
+
   body {
     line-height: 1;
   }

@@ -21,16 +21,13 @@
 
     .icon {
       display: block;
-      width: 80px;
-      height: 80px;
+      padding: 21px;
+      width: 38px;
+      height: 38px;
       margin-right: 5px;
 
       border-radius: 5px;
       border: 1px solid $theme-secondary-color-lighter-20;
-
-      text-align: center;
-      font-size: 38px;
-      line-height: 80px;
     }
 
     .info {

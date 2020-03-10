@@ -112,6 +112,10 @@ export default createGlobalStyle`${css`
     display: block;
   }
 
+  html {
+    background-color: #f0f0f0;
+  }
+
   body {
     line-height: 1;
   }
@@ -162,7 +166,8 @@ export default createGlobalStyle`${css`
         margin: 10px 0;
 
         label {
-          font-size: 18px;
+          font-size: 16px;
+          line-height: 1.5;
         }
 
         input {
@@ -172,6 +177,7 @@ export default createGlobalStyle`${css`
           border-radius: 5px;
           border: 1px solid ${lighten('0.4', colors.secundary)};
           outline: none;
+          box-sizing: border-box;
 
           &:focus {
             border-color: ${lighten('0.1', colors.secundary)};

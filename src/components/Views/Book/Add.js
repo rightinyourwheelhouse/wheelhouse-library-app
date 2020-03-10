@@ -56,7 +56,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
             </label>
           </div>
           <div className="form-group">
-            <Switch Action={() => setIsOwner(!isOwner)} Id="owner" Text="Are you the owner? When this option is checked, you will be marked as the owner of this book!" On={isOwner} />
+            <Switch Action={() => setIsOwner(!isOwner)} Id="owner" Text="Are you the owner? When this option is checked, you will be marked as the owner of this book. You would uncheck this if you're adding a book that is just laying around in the office" On={isOwner} />
           </div>
           <p className="validationError">{validationError}</p>
         </form>

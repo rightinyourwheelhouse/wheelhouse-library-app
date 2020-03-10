@@ -11,6 +11,7 @@ export default function config(state = initialState, action) {
       const booksWithFlags = action.books.map(book => ({
         ...book,
         expanded: false,
+        key: book.id,
       }));
 
       return {
@@ -27,7 +28,7 @@ export default function config(state = initialState, action) {
         const { id: currentBookId } = book;
 
         if (bookId === currentBookId) {
-          return { ...action.book };
+          return { ...action.book, key: action.book.id };
         }
         return modifiedBook;
       });
@@ -40,7 +41,7 @@ export default function config(state = initialState, action) {
     case bookActions.ADD_NEW_BOOK_SUCCESS: {
       const { books } = state;
 
-      const updatedBooks = [...books].concat({ ...action.newBook });
+      const updatedBooks = [...books].concat({ ...action.newBook, key: action.newBook.id });
 
       return {
         ...state,

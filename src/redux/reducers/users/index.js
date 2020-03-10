@@ -13,11 +13,11 @@ export default function config(state = initialState, action) {
     case userActions.FETCH_ALL_USERS_SUCCESS:
       return {
         ...state,
-        users: action.users,
+        users: action.users.map(user => ({ ...user, key: user.id })),
       };
     case userActions.SET_ACTIVE_USER: {
       if (action.user) {
-        const userObject = { ...action.user };
+        const userObject = { ...action.user, key: action.user.id };
 
         updateAuthenticationHeader(action.token);
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { baseURL, namespace } from '../../utils/api';
 
 export default (bookId) => {
-  const [book, setBook] = useState();
+  const [book, setBook] = useState({});
 
   useEffect(() => {
     const fetchBook = async () => {

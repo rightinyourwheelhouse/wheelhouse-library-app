@@ -4,7 +4,7 @@ import QrReader from 'react-qr-reader';
 // import * as colors from 'styles/colors';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import MenuBar from '../../Navigation/MenuBar/MenuBar';
+import Navigation from '../../Navigation/Navigation';
 import useRental from '../../../api/rentals/useRental';
 import * as bookActionFile from '../../../redux/actions/books';
 import useToast, { MESSAGE_TYPES } from '../../../hooks/useToast';
@@ -57,7 +57,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
 
   return (
     <>
-      <MenuBar Title="Scan Book" history={history} Back />
+      <Navigation Title="Scan Book" back />
 
       <div className="card book-detail">
         <h2 className="book-title">Rent book by QR code</h2>

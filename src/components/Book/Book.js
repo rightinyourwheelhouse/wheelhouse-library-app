@@ -1,56 +1,77 @@
-import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as bookActionFile from '../../redux/actions/books';
-import StatusText from './StatusText';
-import ActionButton from '../Button/ActionButton';
-import useRental from '../../api/rentals/useRental';
-import './Book.scss';
+import React, { memo, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
-const mapDispatchToProps = dispatch => ({
-  bookActions: bindActionCreators(bookActionFile, dispatch),
-});
 
-const mapStateToProps = state => ({
-  ...state,
-});
+import {
+  OuterContainer, Container, Thumb, Details, Actions, ActionButton,
+} from './book.styles';
 
-export default connect(mapStateToProps, mapDispatchToProps)(({
-  bookData,
-  InfoAction,
-  Users,
-  Expanded,
-  ActiveUser,
-  bookActions,
+const Book = ({
+  data: {
+    id, coverimg, title, author,
+  }, data, onSelect, expanded, onInfo, onRent, rentable, returnable,
 }) => {
-  const { rentOrReturnBook } = useRental();
+  const onClick = useCallback(
+    () => {
+      onSelect(id);
+    },
+    [id, onSelect],
+  );
 
-  const handleRent = async () => {
-    const updatedBook = await rentOrReturnBook(bookData);
-    if (updatedBook) {
-      bookActions.updateBook(updatedBook);
-    }
-  };
+  const onInfoClick = useCallback(
+    () => {
+      onInfo(id);
+    },
+    [id, onInfo],
+  );
 
-  const handleInfo = () => {
-    InfoAction(bookData.id);
-  };
+  const onRentClick = useCallback(
+    async () => {
+      onRent(data);
+    },
+    [data, onRent],
+  );
 
   return (
-    <div className={`book-row-container ${Expanded ? 'expanded' : ''}`}>
-      <div onClick={() => bookActions.expandBookInformation(bookData.id)} role="button" className="book">
-        <img src={bookData.coverimg} alt="Book cover" />
-        <div className="info">
-          <h2 className="book-title">{bookData.title}</h2>
-          <StatusText Users={Users} bookData={bookData} />
-        </div>
-      </div>
-      <div className="actions-container">
-        <ActionButton onClick={handleRent} type="button" color="primary" isDisabled={bookData.rentee && bookData.rentee !== ActiveUser.id}>
-          {bookData.rentee === ActiveUser.id ? 'Return' : 'Rent'}
-        </ActionButton>
-        <ActionButton onClick={handleInfo} type="button" color="secondary" isDisabled={false}>Info</ActionButton>
-      </div>
-    </div>
+    <OuterContainer className={expanded && 'expanded'}>
+      <Container role="button" onClick={onClick}>
+        <Thumb>
+          <img src={coverimg} alt="Book cover" />
+        </Thumb>
+        <Details>
+          <h2>{title}</h2>
+          <h3>
+by
+            {' '}
+            <span>{author}</span>
+          </h3>
+        </Details>
+      </Container>
+      <Actions>
+        {returnable ? <ActionButton type="button" onClick={onRentClick}>return</ActionButton> : <ActionButton type="button" onClick={onRentClick} disabled={!rentable}>{rentable ? 'rent' : 'rented out'}</ActionButton>}
+        <ActionButton type="button" onClick={onInfoClick} className="info">info</ActionButton>
+      </Actions>
+    </OuterContainer>
   );
-});
+};
+
+Book.propTypes = {
+  data: PropTypes.shape({
+    bookCover: PropTypes.string,
+    id: PropTypes.string,
+  }).isRequired,
+  expanded: PropTypes.bool,
+  onInfo: PropTypes.func.isRequired,
+  onRent: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  rentable: PropTypes.bool,
+  returnable: PropTypes.bool,
+};
+
+Book.defaultProps = {
+  expanded: false,
+  rentable: true,
+  returnable: false,
+};
+
+export default memo(Book);

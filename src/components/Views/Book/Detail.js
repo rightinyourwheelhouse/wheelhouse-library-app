@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import BookDetail from '../../BookDetail/BookDetail';
-import MenuBar from '../../Navigation/MenuBar/MenuBar';
+import Navigation from '../../Navigation/Navigation';
 
 import './Detail.scss';
 
@@ -18,10 +18,9 @@ export default connect(mapStateToProps)(
     match: {
       params: { id },
     },
-    history,
   }) => (
     <>
-      <MenuBar Title="Book Detail" history={history} Back />
+      <Navigation title="Book Detail" back />
       {users.length ? (
         <div>
           <BookDetail bookId={id} />

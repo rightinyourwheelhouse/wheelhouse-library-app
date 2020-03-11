@@ -144,12 +144,11 @@ export default createGlobalStyle`${css`
   }
 
   .app {
-    background-color: #f0f0f0;
+    background-color: #fff;
     color: ${colors.textDark};
     font-family: 'Libre Franklin', sans-serif;
     height: 100%;
     margin: 0 auto;
-    max-width: 960px;
     overflow: hidden;
     overflow-y: auto;
 

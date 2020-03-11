@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import MenuBar from '../../Navigation/MenuBar/MenuBar';
+import Navigation from '../../Navigation/Navigation';
 import Button from '../../Button/Button';
 import Switch from '../../UI/Switch/Switch';
 import * as bookActionFile from '../../../redux/actions/books';
@@ -46,7 +46,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(({
 
   return (
     <>
-      <MenuBar Title="Add New Book" history={history} Back />
+      <Navigation title="Add New Book" back />
       <div className="card add-new-book">
         <form>
           <div className="form-group">

@@ -1,28 +1,38 @@
 import { useState, useEffect } from 'react';
+
+import { PENDING, REJECTED, RESOLVED } from '../../constants/loadingStates';
 import { baseURL, namespace } from '../../utils/api';
 
 export default (bookId) => {
   const [book, setBook] = useState({});
+  const [status, setStatus] = useState(PENDING);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchBook = async () => {
-      const fetchedBook = await fetch(
-        `${baseURL}${namespace}/books/${bookId}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          method: 'GET',
-        }
-      ).then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error(`Could not fetch book ID ${bookId}`);
-      });
+      try {
+        const response = await fetch(
+          `${baseURL}${namespace}/books/${bookId}`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            method: 'GET',
+          }
+        );
 
-      if (fetchedBook) {
-        setBook(fetchedBook);
+        if (response.ok) {
+          const fetchedBook = await response.json();
+
+          setBook(fetchedBook);
+          setStatus(RESOLVED);
+          return;
+        }
+
+        throw new Error();
+      } catch (err) {
+        setStatus(REJECTED);
+        setError(`Could not fetch book ID ${bookId}`);
       }
     };
 
@@ -31,5 +41,5 @@ export default (bookId) => {
     }
   }, [bookId]);
 
-  return { book };
+  return { book, error, status };
 };
